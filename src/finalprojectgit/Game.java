@@ -1,5 +1,4 @@
-
-package finalprojectgit;
+package videogame;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,28 +7,25 @@ import java.awt.image.BufferStrategy;
 
 /**
  *
- * @author hgm
+ * @author RicardoGomez and HeribertoGil
  */
 public class Game implements Runnable {
 
     private BufferStrategy bs;                          // to have several buffers when displaying
     private Graphics g;                                 // to paint objects
     private Display display;                            // to display in the game
-    private String title;                                       // title of the window
+    private MouseManager mouseManager;                  // to use the mouse
+    String title;                                       // title of the window
     private int width;                                  // width of the window
     private int height;                                 // height of the window
     private Thread thread;                              // thread to create the game
     private boolean running;                            // to set the game
+    private int score = 0;                              // to save the player score
+    private int lives = 5;                              // to save the player lives
+    private int colCount = 0;                           // to save the times that the object collide with ring
+    private Ball ball;                                  // to store the ball
+    private Ring ring;                                  // to store the ring
 
-    private MouseManager mouseManager;
-    private KeyManager keyManager;  
-    private ReadandWrite RW;
-    private Player player;
-
-    private int score;                              // to save the player score
-    private int lives;                              // to save the player lives
-    private int count;                           // to save the times that the object collide with ring
-    
     /**
      * to create title, width and height and set the game is still not running
      *
@@ -42,14 +38,25 @@ public class Game implements Runnable {
         this.width = width;
         this.height = height;
         running = false;
-
-        lives = 5;
-        score = 0;
-        count = 0;
-
         mouseManager = new MouseManager();
-        keyManager = new KeyManager();
-        RW = new ReadandWrite(this);
+    }
+
+    /**
+     * To get the width of the game window
+     *
+     * @return an <code>int</code> value with the width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * To get the height of the game window
+     *
+     * @return an <code>int</code> value with the height
+     */
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -59,40 +66,15 @@ public class Game implements Runnable {
         display = new Display(title, getWidth(), getHeight());
         Assets.init();
 
-        player = new Player(100, 100, 100, 100, this);
-        
-        display.getJFrame().addKeyListener(keyManager);
+        ball = new Ball(100, 100, 100, 100, this);
+        ring = new Ring(getWidth() - 200, 200, 100, 100, this);
+
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
 
         // plays the backSound
         Assets.backSound.setLooping(true);
         Assets.backSound.play();
-    }
-
-    /**
-     * setting the thread for the game
-     */
-    public synchronized void start() {
-        if (!running) {
-            running = true;
-            thread = new Thread(this);
-            thread.start();
-        }
-    }
-
-    /**
-     * stopping the thread
-     */
-    public synchronized void stop() {
-        if (running) {
-            running = false;
-            try {
-                thread.join();
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-        }
     }
 
     @Override
@@ -118,28 +100,53 @@ public class Game implements Runnable {
 
             // if delta is positive we tick the game
             if (delta >= 1) {
-            	keyManager.tick();
-                if (lives > 0 && keyManager.p == false) {
+                render();
+                if (lives > 0) {
                     tick();
                 }
-                render();
                 delta--;
             }
         }
         stop();
     }
 
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setLives(int life) {
+        this.lives = life;
+    }
+
+    public void setScore(int x) {
+        this.score = x;
+    }
 
     private void tick() {
-        // ticks
+        // avancing ball with colision
         mouseManager.tick();
-        player.tick();
-        
-        //revisar colisiones con otros objetos
-        	//dentro de las colisiones llamar a la funcion de sonido;
+        ball.tick();
+        ring.tick();
 
-        //System.out.println("("+mouseManager.x+","+mouseManager.y+")");
-    	RW.tick();
+        if (ball.collision(ring)) {
+            ball.setX(ball.xSpawn);
+            ball.setY(ball.ySpawn);
+            ball.setWasHold(false);
+            ball.setTime(0);
+            score += 10;
+            Assets.point.play();
+            if (score % 50 == 0) {
+                lives += 1;
+            }
+        }
     }
 
     private void render() {
@@ -150,108 +157,62 @@ public class Game implements Runnable {
         after clearing the Rectanlge, getting the graphic object from the 
         buffer strategy element. 
         show the graphic and dispose it to the trash system
-        */
+         */
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
-        }
-        else
-        {
+        } else {
             g = bs.getDrawGraphics();
-            
-            if(lives > 0){
-                if(keyManager.p){
-                    g.drawImage(Assets.background, 0, 0, width, height, null);
-            
-                    // Displays the score with a specific format
-    	        	g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-    		        g.setColor(Color.red);
-    		        g.drawString("Score: " + score, getWidth() - 150, 50);
+            g.drawImage(Assets.background, 0, 0, width, height, null);
 
-         		    // Displays the lives with a specific format
-        		    g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-        		    g.setColor(Color.red);
-        		    g.drawString("Lives: " + lives, getWidth() - 150, 80);
+            //items render
+            ball.render(g);
+            ring.render(g);
 
-        		    // Display Pause signal
-        		    g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-        		    g.setColor(Color.red);
-        		    g.drawString("Pause", getWidth() - 150, 110);
-            
-                    player.render(g);
-                }
-                else{
-                    g.drawImage(Assets.background, 0, 0, width, height, null);
-            
-                    // Displays the score with a specific format
-    	        	g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-    		        g.setColor(Color.red);
-    		        g.drawString("Score: " + score, getWidth() - 150, 50);
+            // Displays the score with a specific format
+            g.setFont(new Font("Cooper Black", Font.BOLD, 20));
+            g.setColor(Color.red);
+            g.drawString("Score: " + score, getWidth() - 150, 50);
 
-         		    // Displays the lives with a specific format
-        		    g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-        		    g.setColor(Color.red);
-        		    g.drawString("Lives: " + lives, getWidth() - 150, 80);
-            
-                    player.render(g);
-                }
-            }
-            else{
+            // Displays the lives with a specific format
+            g.setFont(new Font("Cooper Black", Font.BOLD, 20));
+            g.setColor(Color.red);
+            g.drawString("Lives: " + lives, getWidth() - 150, 80);
+            // Linea limite de velocidad
+            g.drawLine(256, 0, 256, 600);
+
+            // show the Game Over screen if lives are less or equal than 0
+            if (lives <= 0) {
                 g.drawImage(Assets.gameover, 0, 0, width, height, null);
+                Assets.backSound.stop();
             }
-        
             bs.show();
             g.dispose();
         }
     }
 
-    //funcion de sonido
-    public void beep(){
-        Assets.point.play();
-    }
-
-    //setters
-    public void setLives(int life) {
-        this.lives = life;
-    }
-
-    public void setScore(int x) {
-        this.score = x;
-    }
-
-    //getters
-
     /**
-     * To get the width of the game window
-     *
-     * @return an <code>int</code> value with the width
+     * setting the thead for the game
      */
-    public int getWidth() {
-        return width;
+    public synchronized void start() {
+        if (!running) {
+            running = true;
+            thread = new Thread(this);
+            thread.start();
+        }
     }
 
     /**
-     * To get the height of the game window
-     *
-     * @return an <code>int</code> value with the height
+     * stopping the thread
      */
-    public int getHeight() {
-        return height;
-    }
-
-    public MouseManager getMouseManager(){
-        return mouseManager;
-    }
-    
-    public KeyManager getKeyManager() {
-        return keyManager;
-    }
-    
-    public int getLives() {
-        return lives;
-    }
-
-    public int getScore() {
-        return score;
+    public synchronized void stop() {
+        if (running) {
+            running = false;
+            try {
+                thread.join();
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package finalprojectgit;
+package videogame;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -65,7 +65,7 @@ public class Display {
      *
      * @return jframe
      */
-    public JFrame getJFrame() {
+    public JFrame getJframe() {
         return jframe;
     }
 

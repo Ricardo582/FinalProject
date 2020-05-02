@@ -1,5 +1,5 @@
 
-package finalprojectgit;
+package videogame;
 
 import java.awt.image.BufferedImage;
 

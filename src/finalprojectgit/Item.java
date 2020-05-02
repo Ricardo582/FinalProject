@@ -1,4 +1,4 @@
-package finalprojectgit;
+package videogame;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -98,7 +98,7 @@ public abstract class Item {
             Rectangle rThis = new Rectangle(getX() + 20, getY() + 20, getWidth() - 35,
                     getHeight() - 50);
             Item i = (Item) o;
-            Rectangle rOther = new Rectangle(i.getX(), i.getY(), i.getWidth(),
+            Rectangle rOther = new Rectangle(i.getX(), i.getY(), 5,
                     i.getHeight());
 
             bStatus = rThis.intersects(rOther);
