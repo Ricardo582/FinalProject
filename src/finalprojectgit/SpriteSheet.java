@@ -1,4 +1,4 @@
-package videogame;
+package finalprojectgit;
 
 import java.awt.image.BufferedImage;
 

@@ -53,12 +53,12 @@ public class ReadandWrite {
         }
     }
     
-    public void tick(){
+    /*public void tick(){
         if(game.getKeyManager().s){
             Save("saves.txt");
         }
         if(game.getKeyManager().l){
             Load("saves.txt");
         }
-    }
+    }*/
 }

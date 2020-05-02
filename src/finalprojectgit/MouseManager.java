@@ -1,4 +1,4 @@
-package videogame;
+package finalprojectgit;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
