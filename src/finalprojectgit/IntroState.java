@@ -11,9 +11,9 @@ public class IntroState extends GameState {
     private int alpha;
     private int ticks;
 
-    private final int FADE_IN = 60;
+    private final int FADE_IN = 100;
     private final int LENGTH = 60;
-    private final int FADE_OUT = 60;
+    private final int FADE_OUT = 100;
 
     public IntroState(GameStateManager gsm) {
         super(gsm);

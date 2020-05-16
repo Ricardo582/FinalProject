@@ -16,8 +16,7 @@ public class Level1 extends GameState {
     }
 
     @Override
-    public void init() {
-    }
+    public void init() {}
 
     @Override
     public void tick() {
