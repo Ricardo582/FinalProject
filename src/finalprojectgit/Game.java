@@ -1,30 +1,26 @@
 package finalprojectgit;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 /**
  *
  * @author RicardoGomez and HeribertoGil
  */
-public class Game implements Runnable {
+public class Game implements Runnable, KeyListener {
 
-    private BufferStrategy bs;                          // to have several buffers when displaying
-    private Graphics g;                                 // to paint objects
-    private Display display;                            // to display in the game
-    private MouseManager mouseManager;                  // to use the mouse
-    String title;                                       // title of the window
-    private int width;                                  // width of the window
-    private int height;                                 // height of the window
-    private Thread thread;                              // thread to create the game
-    private boolean running;                            // to set the game
-    private int score = 0;                              // to save the player score
-    private int lives = 5;                              // to save the player lives
-    private int colCount = 0;                           // to save the times that the object collide with ring
-    private Ball ball;                                  // to store the ball
-    private Ring ring;                                  // to store the ring
+    private BufferStrategy bs;          // to have several buffers when displaying
+    private Graphics g;                 // to paint objects
+    private Display display;            // to display in the game
+    public static int width;                   // width of the window
+    public static int height;                  // height of the window
+    private Thread thread;              // thread to create the game
+    String title;                       // title of the window
+    private boolean running;            // to set the game
+    private KeyManager keyManager;      // to manage the keyboard
+    private GameStateManager gsm;
 
     /**
      * to create title, width and height and set the game is still not running
@@ -38,25 +34,6 @@ public class Game implements Runnable {
         this.width = width;
         this.height = height;
         running = false;
-        mouseManager = new MouseManager();
-    }
-
-    /**
-     * To get the width of the game window
-     *
-     * @return an <code>int</code> value with the width
-     */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * To get the height of the game window
-     *
-     * @return an <code>int</code> value with the height
-     */
-    public int getHeight() {
-        return height;
     }
 
     /**
@@ -64,94 +41,59 @@ public class Game implements Runnable {
      */
     private void init() {
         display = new Display(title, getWidth(), getHeight());
+        display.getJframe().addKeyListener(this);
         Assets.init();
-
-        ball = new Ball(100, 100, 100, 100, this);
-        ring = new Ring(getWidth() - 200, 200, 100, 100, this);
-
-        display.getCanvas().addMouseListener(mouseManager);
-        display.getCanvas().addMouseMotionListener(mouseManager);
-
-        // plays the backSound
-        Assets.backSound.setLooping(true);
-        Assets.backSound.play();
+        gsm = new GameStateManager();
+        keyManager = new KeyManager();
     }
 
     @Override
     public void run() {
         init();
+        
         // frames per second
         int fps = 60;
+        
         // time for each tick in nano segs
         double timeTick = 1000000000 / fps;
+        
         // initializing delta
         double delta = 0;
+        
         // define now to use inside the loop
         long now;
+        
         // initializing last time to the computer time in nanosecs
         long lastTime = System.nanoTime();
         while (running) {
+            
             // setting the time now to the actual time
             now = System.nanoTime();
+            
             // acumulating to delta the difference between times in timeTick units
             delta += (now - lastTime) / timeTick;
+            
             // updating the last time
             lastTime = now;
-
-            // if delta is positive we tick the game
+            
             if (delta >= 1) {
+                tick();
                 render();
-                if (lives > 0) {
-                    tick();
-                }
                 delta--;
             }
         }
         stop();
     }
 
-    public MouseManager getMouseManager() {
-        return mouseManager;
-    }
-
-    public int getLives() {
-        return lives;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setLives(int life) {
-        this.lives = life;
-    }
-
-    public void setScore(int x) {
-        this.score = x;
-    }
-
     private void tick() {
-        // avancing ball with colision
-        mouseManager.tick();
-        ball.tick();
-        ring.tick();
-
-        if (ball.collision(ring)) {
-            ball.setX(ball.xSpawn);
-            ball.setY(ball.ySpawn);
-            ball.setWasHold(false);
-            ball.setTime(0);
-            score += 10;
-            Assets.point.play();
-            if (score % 50 == 0) {
-                lives += 1;
-            }
-        }
+        gsm.tick();
+        keyManager.tick();
     }
 
     private void render() {
         // get the buffer strategy from the display
         bs = display.getCanvas().getBufferStrategy();
+        
         /* if it is null, we define one with 3 buffers to display images of
         the game, if not null, then we display every image of the game but
         after clearing the Rectanlge, getting the graphic object from the 
@@ -162,36 +104,14 @@ public class Game implements Runnable {
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-            g.drawImage(Assets.background, 0, 0, width, height, null);
-
-            //items render
-            ball.render(g);
-            ring.render(g);
-
-            // Displays the score with a specific format
-            g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-            g.setColor(Color.red);
-            g.drawString("Score: " + score, getWidth() - 150, 50);
-
-            // Displays the lives with a specific format
-            g.setFont(new Font("Cooper Black", Font.BOLD, 20));
-            g.setColor(Color.red);
-            g.drawString("Lives: " + lives, getWidth() - 150, 80);
-            // Linea limite de velocidad
-            g.drawLine(256, 0, 256, 600);
-
-            // show the Game Over screen if lives are less or equal than 0
-            if (lives <= 0) {
-                g.drawImage(Assets.gameover, 0, 0, width, height, null);
-                Assets.backSound.stop();
-            }
+            gsm.render(g);
             bs.show();
             g.dispose();
         }
     }
 
     /**
-     * setting the thead for the game
+     * setting the thread for the game
      */
     public synchronized void start() {
         if (!running) {
@@ -214,5 +134,36 @@ public class Game implements Runnable {
             }
         }
     }
+    
+    /**
+     * To get the width of the game window
+     *
+     * @return an <code>int</code> value with the width
+     */
+    public static int getWidth() {
+        return width;
+    }
 
+    /**
+     * To get the height of the game window
+     *
+     * @return an <code>int</code> value with the height
+     */
+    public static int getHeight() {
+        return height;
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        keyManager.keySet(e.getKeyCode(), true);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        keyManager.keySet(e.getKeyCode(), false);
+    }
 }
