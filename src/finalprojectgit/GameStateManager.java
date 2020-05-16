@@ -29,7 +29,7 @@ public class GameStateManager {
         pauseState = new PauseState(this);
 
         gameStates = new GameState[NUM_STATES];
-        setState(MENU);
+        setState(INTRO);
     }
 
     public void setState(int state) {

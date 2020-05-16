@@ -2,20 +2,12 @@ package finalprojectgit;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
-import finalprojectgit.GameStateManager;
-import finalprojectgit.KeyManager;
 
 /**
  *
  * @author ricar
  */
 public class IntroState extends GameState {
-
-    private BufferedImage logo;
-
     private int alpha;
     private int ticks;
 
@@ -29,11 +21,6 @@ public class IntroState extends GameState {
 
     public void init() {
         ticks = 0;
-        try {
-            logo = ImageIO.read(getClass().getResourceAsStream("/images/logo.gif"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void tick() {
@@ -58,10 +45,10 @@ public class IntroState extends GameState {
 
     public void render(Graphics g) {
         g.setColor(Color.WHITE);
-        //g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT2);
-        //g.drawImage(logo, 0, 0, Game.WIDTH, Game.HEIGHT2, null);
+        g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
+        g.drawImage(Assets.logo, Game.getWidth() / 2 - 157, Game.getHeight() / 2 - 186, null);
         g.setColor(new Color(0, 0, 0, alpha));
-        //g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT2);
+        g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
     }
 
     public void handleInput() {

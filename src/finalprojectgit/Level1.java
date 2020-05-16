@@ -7,13 +7,17 @@ import java.awt.Graphics;
  * @author ricar
  */
 public class Level1 extends GameState {
-    
+
+    // events
+    private boolean blockInput;
+
     public Level1(GameStateManager gsm) {
         super(gsm);
     }
-    
+
     @Override
-    public void init() {}
+    public void init() {
+    }
 
     @Override
     public void tick() {
@@ -27,7 +31,27 @@ public class Level1 extends GameState {
 
     @Override
     public void handleInput() {
-        
+        if (KeyManager.isPressed(KeyManager.ESCAPE)) {
+            gsm.setPaused(true);
+        }
+        if (blockInput) {
+            return;
+        }
+        if (KeyManager.isDown(KeyManager.LEFT)) {
+            //player.setLeft();
+        }
+        if (KeyManager.isDown(KeyManager.RIGHT)) {
+            //player.setRight();
+        }
+        if (KeyManager.isDown(KeyManager.UP)) {
+            //player.setUp();
+        }
+        if (KeyManager.isDown(KeyManager.DOWN)) {
+            //player.setDown();
+        }
+        if (KeyManager.isPressed(KeyManager.SPACE)) {
+            //player.setAction();
+        }
     }
-    
+
 }
