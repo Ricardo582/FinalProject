@@ -10,22 +10,36 @@ public class Level1 extends GameState {
 
     // events
     private boolean blockInput;
+    private TileMap tileMap;
+    private Player player;          // to store the ball
+    private ReadWrite RW;
 
     public Level1(GameStateManager gsm) {
         super(gsm);
     }
 
     @Override
-    public void init() {}
+    public void init() {
+        tileMap = new TileMap(0, -400, 3000, 1000, this);
+        RW = new ReadWrite(this);
+        tileMap.init();
+        player = new Player(200, 200, 80, 200, this);
+        
+    }
 
     @Override
     public void tick() {
         handleInput();
+        RW.tick();
+        tileMap.tick();
+        player.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.lvla, 0, 0, Game.getWidth(), Game.getHeight(), null);
+        g.drawImage(Assets.back, 0, 0, Game.getWidth(), Game.getHeight(), null);
+        tileMap.render(g);
+        player.render(g);
     }
 
     @Override
@@ -52,5 +66,13 @@ public class Level1 extends GameState {
             //player.setAction();
         }
     }
-
+    
+    public TileMap getTileMap() {
+        return tileMap;
+    }
+    
+    public ReadWrite getRW(){
+        return RW;
+    }
+    
 }
