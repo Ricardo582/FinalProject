@@ -45,5 +45,15 @@ public class PauseState extends GameState {
 			gsm.setState(GameStateManager.MENU);
 		}
 	}
+
+    @Override
+    public ReadWrite getRW() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public TileMap getTileMap() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
 }

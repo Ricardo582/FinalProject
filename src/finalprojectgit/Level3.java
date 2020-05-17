@@ -13,28 +13,71 @@ import java.awt.Graphics;
  */
 public class Level3 extends GameState {
     
+    private boolean blockInput;
+    private TileMap tileMap;
+    private Player player;          // to store the ball
+    private ReadWrite RW;
+    
     public Level3(GameStateManager gsm) {
         super(gsm);
     }
     
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tileMap = new TileMap(0, -400, 3000, 1000, this);
+        RW = new ReadWrite(this);
+        tileMap.init();
+        player = new Player(200, 200, 80, 200, this);
+        tileMap.setCurrLvl(3);
+        
     }
 
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        handleInput();
+        RW.tick();
+        tileMap.tick();
+        player.tick();
     }
 
     @Override
     public void render(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        g.drawImage(Assets.back, 0, 0, Game.getWidth(), Game.getHeight(), null);
+        tileMap.render(g);
+        player.render(g);
     }
 
     @Override
     public void handleInput() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (KeyManager.isPressed(KeyManager.ESCAPE)) {
+            gsm.setPaused(true);
+        }
+        if (blockInput) {
+            return;
+        }
+        if (KeyManager.isDown(KeyManager.LEFT)) {
+            //player.setLeft();
+        }
+        if (KeyManager.isDown(KeyManager.RIGHT)) {
+            //player.setRight();
+        }
+        if (KeyManager.isDown(KeyManager.UP)) {
+            //player.setUp();
+        }
+        if (KeyManager.isDown(KeyManager.DOWN)) {
+            //player.setDown();
+        }
+        if (KeyManager.isPressed(KeyManager.SPACE)) {
+            //player.setAction();
+        }
+    }
+    
+    public TileMap getTileMap() {
+        return tileMap;
+    }
+    
+    public ReadWrite getRW(){
+        return RW;
     }
     
 }

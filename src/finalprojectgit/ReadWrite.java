@@ -12,12 +12,12 @@ import java.io.BufferedReader;
  */
 public class ReadWrite {
     
-    Level1 lvl1;
+    GameState lvl;
     int vidas;
     int score;
     
-    ReadWrite(Level1 lvl1){
-        this.lvl1 = lvl1;
+    ReadWrite(GameState lvl){
+        this.lvl = lvl;
     }
     
     public void Save(String strFileName){

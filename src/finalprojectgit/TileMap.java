@@ -13,13 +13,14 @@ import java.util.LinkedList;
  * @author hgm
  */
 public class TileMap extends Item{
-    private Level1 lvl1;
+    private GameState lvl;
     private LinkedList<Enemy> enemies;
     public LinkedList<Block> blocks;
+    public int currlvl;
 
-    public TileMap(int x, int y, int width, int height, Level1 lvl1) {
+    public TileMap(int x, int y, int width, int height, GameState lvl) {
         super(x, y, width, height);
-        this.lvl1 = lvl1;
+        this.lvl = lvl;
         enemies = new LinkedList();
         blocks = new LinkedList();
         
@@ -27,7 +28,7 @@ public class TileMap extends Item{
     
     public void init(){
         int[][] tilemap = new int[10][30];
-        tilemap = lvl1.getRW().tileRead("lvl1.txt");
+        tilemap = lvl.getRW().tileRead("lvl1.txt");
         generateMap(tilemap);
         //genera enemigos de acuerdo al nivel
     }
@@ -75,7 +76,23 @@ public class TileMap extends Item{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.background, x, y, width, height, null);
+        System.out.println(currlvl);
+        switch(currlvl) {
+            case 1:
+                g.drawImage(Assets.background1, x, y, width, height, null);
+                break;
+                
+            case 2:
+                g.drawImage(Assets.background2, x, y, width, height, null);
+                break;
+                
+            case 3:
+                g.drawImage(Assets.background3, x, y, width, height, null);
+                break;
+                
+            default:
+                break;
+        }
         
         for(Block block: blocks){
             block.render(g);
@@ -83,5 +100,9 @@ public class TileMap extends Item{
         for(Enemy enemigo: enemies){
             enemigo.render(g);
         }
+    }
+    
+    public void setCurrLvl(int curr) {
+        currlvl = curr;
     }
 }

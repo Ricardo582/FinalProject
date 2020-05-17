@@ -24,7 +24,7 @@ public class Level1 extends GameState {
         RW = new ReadWrite(this);
         tileMap.init();
         player = new Player(200, 200, 80, 200, this);
-        
+        tileMap.setCurrLvl(1);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Level1 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
-            //player.setAction();
+            gsm.setState(GameStateManager.LEVEL2);
         }
     }
     

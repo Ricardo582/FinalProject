@@ -17,4 +17,6 @@ public abstract class GameState {
     public abstract void tick();
     public abstract void render(Graphics g);
     public abstract void handleInput();
+    public abstract ReadWrite getRW();
+    public abstract TileMap getTileMap();
 }

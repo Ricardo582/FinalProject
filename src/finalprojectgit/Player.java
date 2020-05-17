@@ -12,11 +12,11 @@ import java.awt.Graphics;
  * @author hgm
  */
 public class Player extends Item {
-    private Level1 lvl1;
+    private GameState lvl;
 
-    public Player(int x, int y, int width, int height, Level1 lvl1) {
+    public Player(int x, int y, int width, int height, GameState lvl) {
         super(x, y, width, height);
-        this.lvl1 = lvl1;
+        this.lvl = lvl;
     }
 
     @Override
@@ -25,13 +25,13 @@ public class Player extends Item {
             setY(y-10);
         }
         if(KeyManager.isDown(KeyManager.UP) && y < 100){
-            lvl1.getTileMap().setY(lvl1.getTileMap().getY()+10);
+            lvl.getTileMap().setY(lvl.getTileMap().getY()+10);
         }
         if(KeyManager.isDown(KeyManager.DOWN) && (y + getHeight()) < 500){
             setY(y+10);
         }
         if(KeyManager.isDown(KeyManager.DOWN) && (y + getHeight()) >= 500){
-            lvl1.getTileMap().setY(lvl1.getTileMap().getY()-10);
+            lvl.getTileMap().setY(lvl.getTileMap().getY()-10);
         }
     }
 

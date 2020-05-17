@@ -18,7 +18,9 @@ public class Assets {
     public static BufferedImage go;         // to store background image
     public static BufferedImage ball;         // to store background image
     public static BufferedImage logo;         // to store background image
-    public static BufferedImage background;         // to store background image
+    public static BufferedImage background1;         // to store background image
+    public static BufferedImage background2;         // to store background image
+    public static BufferedImage background3;         // to store background image
     public static BufferedImage enemy;
     public static BufferedImage player;
     public static BufferedImage b1;
@@ -42,7 +44,9 @@ public class Assets {
         lvlb = ImageLoader.loadImage("/images/Lvl2.jpeg");
         lvlc = ImageLoader.loadImage("/images/Lvl3.jpeg");
         pause = ImageLoader.loadImage("/images/Pause.jpeg");
-        background = ImageLoader.loadImage("/images/Background.png");
+        background3 = ImageLoader.loadImage("/images/Background3.png");
+        background2 = ImageLoader.loadImage("/images/Brackground1.png");
+        background1 = ImageLoader.loadImage("/images/Background2.png");
         go = ImageLoader.loadImage("/images/GO.jpeg");
         
         player = ImageLoader.loadImage("/images/player.png");
