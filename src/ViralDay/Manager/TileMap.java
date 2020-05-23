@@ -77,7 +77,8 @@ public class TileMap extends Item {
         if (KeyManager.isDown(KeyManager.RIGHT)) {
             setX(x - 10);
         }
-        setX(x - 6);
+        
+        setX(x - 4);
 
         for (Block block : blocks) {
             block.tick();
@@ -103,9 +104,25 @@ public class TileMap extends Item {
                 break;
             case 2:
                 g.drawImage(Assets.lvlb, x, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 2, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 3, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 4, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 5, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 6, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 7, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 8, y, width, height, null);
                 break;
             case 3:
                 g.drawImage(Assets.lvlc, x, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 2, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 3, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 4, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 5, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 6, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 7, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 8, y, width, height, null);
                 break;
             default:
                 break;

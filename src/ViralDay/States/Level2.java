@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ViralDay.States;
 
 import ViralDay.Manager.Assets;
 import ViralDay.Manager.Game;
+import ViralDay.Manager.TileMap;
 import ViralDay.Manager.KeyManager;
 import ViralDay.Manager.ReadWrite;
-import ViralDay.Manager.TileMap;
 import ViralDay.Manager.GameStateManager;
 import ViralDay.Entity.Player;
 import java.awt.Graphics;
@@ -19,23 +14,24 @@ import java.awt.Graphics;
  * @author ricar
  */
 public class Level2 extends GameState {
+
+    // events
     private boolean blockInput;
     private TileMap tileMap;
     private Player player;          // to store the ball
     private ReadWrite RW;
-    
+
     public Level2(GameStateManager gsm) {
         super(gsm);
     }
-    
 
     @Override
     public void init() {
-        tileMap = new TileMap(0, -400, 3000, 1000, this);
+        tileMap = new TileMap(0, -150, 1000, 750, this);
         RW = new ReadWrite(this);
         tileMap.setCurrLvl(2);
         tileMap.init();
-        player = new Player(200, 200, 80, 200, this,tileMap);
+        player = new Player(200, 500, 70, 100, this, tileMap);
     }
 
     @Override

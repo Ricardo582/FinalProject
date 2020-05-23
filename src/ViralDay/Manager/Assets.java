@@ -23,7 +23,6 @@ public class Assets {
     public static BufferedImage background2;         // to store background image
     public static BufferedImage background3;         // to store background image
     public static BufferedImage enemy;
-    public static BufferedImage player;
     public static BufferedImage b1;
     public static BufferedImage b2;
     public static BufferedImage b3;
@@ -32,6 +31,12 @@ public class Assets {
     public static BufferedImage b6;
     public static BufferedImage back;
     public static BufferedImage blockSprites;
+    public static BufferedImage playerSprites;
+    public static BufferedImage playerJump[];
+    public static BufferedImage playerFall[];
+    public static BufferedImage playerIdle[];
+    public static BufferedImage playerAttack[];
+    public static BufferedImage playerRun[];
 
     /**
      * initializing the images of the game
@@ -46,12 +51,32 @@ public class Assets {
         lvlc = ImageLoader.loadImage("/images/Bglvl3.png");
         pause = ImageLoader.loadImage("/images/Pause.jpeg");
         go = ImageLoader.loadImage("/images/GO.jpeg");
-        
-        player = ImageLoader.loadImage("/images/player.png");
         enemy = ImageLoader.loadImage("/images/enemy.png");
         
         blockSprites = ImageLoader.loadImage("/images/block_sprites.png");
         SpriteSheet blockSS = new SpriteSheet(blockSprites);
+        
+        // getting the sprites frome the picture
+        playerSprites = ImageLoader.loadImage("/images/Player.png");
+        
+        // creating array of images before animations
+        SpriteSheet playerSS = new SpriteSheet(playerSprites);
+        playerJump = new BufferedImage[1];
+        playerFall = new BufferedImage[1];
+        playerIdle = new BufferedImage[3];
+        playerAttack = new BufferedImage[3];
+        playerRun = new BufferedImage[5];
+        
+        // croping the pictures from the sheet into the array
+        for (int i = 0; i < 3; i++) {
+            playerIdle[i] = playerSS.crop(i*74, 119, 74, 119);
+        }
+        for (int i = 0; i < 3; i++) {
+            playerAttack[i] = playerSS.crop(i*74, 2*119, 74, 119);
+        }
+        for (int i = 0; i < 5; i++) {
+            playerRun[i] = playerSS.crop(i*74, 0, 74, 119);
+        }
         
         b1 = blockSS.crop(0, 0, 100, 100);
         b2 = blockSS.crop(100, 0, 100, 100);
@@ -59,5 +84,7 @@ public class Assets {
         b4 = blockSS.crop(0, 100, 100, 100);
         b5 = blockSS.crop(100, 100, 100, 100);
         b6 = blockSS.crop(200, 100, 100, 100);
+        playerJump[0] = playerSS.crop(0, 3*119, 74, 119);
+        playerFall[0] = playerSS.crop(0, 4*119, 74, 119);
     }
 }
