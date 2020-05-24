@@ -56,10 +56,10 @@ public class ReadWrite {
     
     public int[][] tileRead(String strFileName){
         int[][] mat;
-        mat = new int[10][90];
+        mat = new int[10][128];
         
         for(int x = 0; x < 10; x++){
-            for(int y = 0; y < 90; y++){
+            for(int y = 0; y < 128; y++){
                 mat[x][y] = 0;
             }
         }
@@ -73,7 +73,7 @@ public class ReadWrite {
             for(int i = 0; i < 10; i++){
                 line = reader.readLine();
                 datos = line.split("/");
-                for(int j = 0; j < 90; j++){
+                for(int j = 0; j < 128; j++){
                     mat[i][j] = Integer.parseInt(datos[j]);
                     System.out.print(mat[i][j]);
                 }

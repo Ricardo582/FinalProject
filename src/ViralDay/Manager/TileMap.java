@@ -33,7 +33,7 @@ public class TileMap extends Item {
     }
 
     public void init() {
-        int[][] tilemap = new int[10][90];
+        int[][] tilemap = new int[10][128];
         switch (currlvl) {
             case 1:
                 tilemap = lvl.getRW().tileRead("lvl1.txt");
@@ -54,17 +54,17 @@ public class TileMap extends Item {
     public void generateMap(int[][] mat) {
         System.out.println("Generando mapa... ");
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 90; j++) {
+            for (int j = 0; j < 128; j++) {
                 if (mat[i][j] != 0) {
                     Block curr = new Block((getX() + (j * 70)), (getY() + (i * 70)), 70, 70, mat[i][j], (j * 70), (i * 70), this);
                     blocks.add(curr);
                 }
             }
         }
-        for (int i = 0; i < 5; i++) {
-            int randBlock = (int) (5 + (Math.random() * 25));
-            int randX = (randBlock * 100) + 10;
-            Enemy temp = new Enemy(randX, -200, 80, 100, this);
+        for (int i = 0; i < 10; i++) {
+            int randBlock = (int) (5 + (Math.random() * 120));
+            int randX = (randBlock * 70) + 10;
+            Enemy temp = new Enemy(randX, -100, 50, 70, this);
             enemies.add(temp);
         }
     }

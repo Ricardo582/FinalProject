@@ -40,6 +40,7 @@ public class Player extends Item {
     public void tick() {
         this.run.tick();
         this.jump.tick();
+        this.fall.tick();
         if(KeyManager.isPressed(KeyManager.UP) && !fallFlag){
             jumpFlag = true;
             velY = 3;

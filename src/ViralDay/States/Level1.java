@@ -31,7 +31,7 @@ public class Level1 extends GameState {
         RW = new ReadWrite(this);
         tileMap.setCurrLvl(1);
         tileMap.init();
-        player = new Player(200, 500, 70, 100, this, tileMap);
+        player = new Player(200, 500, 50, 70, this, tileMap);
     }
 
     @Override

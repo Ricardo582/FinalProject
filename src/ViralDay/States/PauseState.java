@@ -1,22 +1,29 @@
 package ViralDay.States;
 
+import ViralDay.Manager.Game;
 import ViralDay.Manager.ReadWrite;
 import ViralDay.Manager.TileMap;
 import java.awt.Graphics;
 
 import ViralDay.Manager.GameStateManager;
 import ViralDay.Manager.KeyManager;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
  * @author ricar
  */
 public class PauseState extends GameState {
+    private Color color;// to store a color
+    
     public PauseState(GameStateManager gsm) {
 		super(gsm);
 	}
 	
-	public void init() {}
+	public void init() {
+            color = new Color(255, 102, 69);
+        }
 	
 	public void tick() {
 		handleInput();
@@ -37,6 +44,12 @@ public class PauseState extends GameState {
 		Assets.drawString(g, "return", 68, 108);
 		Assets.drawString(g, "to menu", 68, 116);
 		*/
+                g.setFont(new Font("Impact", Font.BOLD, 63));
+                g.setColor(Color.black);
+                g.drawString("Pause", Game.getWidth() / 2 - 85, Game.getHeight() / 2 - 2);
+                g.setFont(new Font("Impact", Font.BOLD, 60));
+                g.setColor(color);
+                g.drawString("Pause", Game.getWidth() / 2 - 80, Game.getHeight() / 2);
 	}
 	public void handleInput() {
 		if(KeyManager.isPressed(KeyManager.ESCAPE)) {

@@ -31,7 +31,7 @@ public class Level3 extends GameState {
         RW = new ReadWrite(this);
         tileMap.setCurrLvl(3);
         tileMap.init();
-        player = new Player(200, 500, 70, 100, this, tileMap);
+        player = new Player(200, 500, 50, 70, this, tileMap);
     }
 
     @Override
@@ -70,6 +70,7 @@ public class Level3 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
+            gsm.setState(GameStateManager.GAMEOVER);
         }
     }
     

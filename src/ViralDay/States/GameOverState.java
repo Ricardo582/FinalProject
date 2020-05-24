@@ -9,6 +9,8 @@
 
 package ViralDay.States;
 
+import ViralDay.Manager.Assets;
+import ViralDay.Manager.Game;
 import ViralDay.Manager.TileMap;
 import ViralDay.Manager.ReadWrite;
 import java.awt.Color;
@@ -66,6 +68,7 @@ public class GameOverState extends GameState {
 		
 		Assets.drawString(g, "press any key", 12, 110);
 		*/
+                g.drawImage(Assets.go, 0, 0, Game.getWidth(), Game.getHeight(), null);
 	}
 	
 	public void handleInput() {
