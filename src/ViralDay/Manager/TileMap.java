@@ -9,6 +9,8 @@ import ViralDay.Entity.Block;
 import ViralDay.Entity.Enemy;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
+import java.awt.Color;
+import java.awt.Font;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -134,6 +136,32 @@ public class TileMap extends Item {
         for (Enemy enemigo : enemies) {
             enemigo.render(g);
         }
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Puntos: 0", Game.getWidth() - 60, 40);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Vidas: 0", Game.getWidth() - 60, 20);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("CONTROLES: ", 20, 20);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Saltar: flecha arriba", 20, 40);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Atrás: flecha izquierda", 20, 60);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Adelante: flecha derecha", 20, 80);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Siguiente nivel: ESPACIO", 20, 100);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Pausa: ESC", 20, 120);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
     }
 
     public void setCurrLvl(int curr) {

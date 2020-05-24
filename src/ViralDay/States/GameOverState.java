@@ -40,7 +40,9 @@ public class GameOverState extends GameState {
 		else rank = 4;
 	}
 	
-	public void tick() {}
+	public void tick() {
+            handleInput();
+        }
 	
 	public void render(Graphics g) {
 		/*
@@ -72,9 +74,9 @@ public class GameOverState extends GameState {
 	}
 	
 	public void handleInput() {
-		if(KeyManager.isPressed(KeyManager.ENTER)) {
-			gsm.setState(GameStateManager.MENU);
-		}
+            if(KeyManager.isPressed(KeyManager.SPACE)) {
+                    gsm.setState(GameStateManager.MENU);
+            }
 	}
 
     @Override
