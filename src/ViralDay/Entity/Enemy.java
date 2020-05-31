@@ -30,6 +30,7 @@ public class Enemy extends Item {
     private Animation enemyP1;
     private Animation enemyP2;
     private Animation enemyP3;
+    private boolean colisionConPlayer;
 
     public Enemy(int x, int y, int width, int height, TileMap tm) {
         super(x, y, width, height);
@@ -49,6 +50,7 @@ public class Enemy extends Item {
         this.enemyP1 = new Animation(Assets.enemyP1, 150);
         this.enemyP2 = new Animation(Assets.enemyP2, 150);
         this.enemyP3 = new Animation(Assets.enemyP3, 150);
+        colisionConPlayer = false;
     }
 
     @Override
@@ -77,6 +79,14 @@ public class Enemy extends Item {
     @Override
     public void render(Graphics g) {
         g.drawImage(enemyB1.getCurrentFrame(), getX(), getY(), (getWidth() * -1), getHeight(), null);
+    }
+    
+    public void setColisionPlayer(boolean status){
+        colisionConPlayer = status;
+    }
+    
+    public boolean getColisionPlayer(){
+        return colisionConPlayer;
     }
 
 }

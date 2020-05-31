@@ -17,7 +17,7 @@ import java.awt.Graphics;
  * @author hgm
  */
 public class Player extends Item {
-    private GameState lvl;
+    public GameState lvl;
     private int velY = 0;
     private int velTimer = 0;
     private boolean jumpFlag = false;
@@ -26,6 +26,8 @@ public class Player extends Item {
     private Animation run;
     private Animation jump;
     private Animation fall;
+    private int vidas = 5;
+    
 
     public Player(int x, int y, int width, int height, GameState lvl, TileMap tm) {
         super(x, y, width, height);
@@ -66,6 +68,17 @@ public class Player extends Item {
                     velY = 10;
                 }
             }
+        
+        //Aquí se hace la lógica para restar vidas cuando colisione con un enemigo
+        for (Enemy enemy : tm.enemies) {
+            if(this.collision(enemy)) {
+                //Verificamos que sea la primera vez que choca
+                if(enemy.getColisionPlayer() == false){ //si no ha colisionado antes, entonces se resta una vida
+                    setVidas(getVidas() - 1);
+                    enemy.setColisionPlayer(true);
+                }              
+            }
+        }
     }
 
     @Override
@@ -81,5 +94,19 @@ public class Player extends Item {
     
     public void setVelY(int velY) {
         this.velY = velY;
+    }
+    
+    
+    //Se agrega set y get de vidas
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+    
+    public int getVidas() {
+        return this.vidas;
+    }
+    
+    public String getVidasText(){
+        return Integer.toString(getVidas());
     }
 }

@@ -7,6 +7,8 @@ import ViralDay.Manager.KeyManager;
 import ViralDay.Manager.ReadWrite;
 import ViralDay.Manager.GameStateManager;
 import ViralDay.Entity.Player;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 /**
@@ -47,6 +49,11 @@ public class Level3 extends GameState {
         g.drawImage(Assets.back, 0, 0, Game.getWidth(), Game.getHeight(), null);
         tileMap.render(g);
         player.render(g);
+        
+        //Aquí se muestran las vidas del jugador en el respectivo nivel
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.white);
+        g.drawString("Vidas = " + player.getVidasText(), Game.getWidth() - 80, 20);
     }
 
     @Override
@@ -70,6 +77,9 @@ public class Level3 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
+            gsm.setState(GameStateManager.GAMEOVER);
+        }
+        if (player.getVidas() == 0) {
             gsm.setState(GameStateManager.GAMEOVER);
         }
     }

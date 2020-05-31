@@ -7,8 +7,10 @@ package ViralDay.Manager;
 
 import ViralDay.Entity.Block;
 import ViralDay.Entity.Enemy;
+import ViralDay.Entity.Player;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
+import ViralDay.States.Level1;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -22,9 +24,10 @@ import java.util.LinkedList;
 public class TileMap extends Item {
 
     private GameState lvl;
-    private LinkedList<Enemy> enemies;
+    public LinkedList<Enemy> enemies;
     public LinkedList<Block> blocks;
     public int currlvl;
+    //public Player player = Level1.player;
 
     public TileMap(int x, int y, int width, int height, GameState lvl) {
         super(x, y, width, height);
@@ -139,9 +142,16 @@ public class TileMap extends Item {
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
         g.drawString("Puntos: 0", Game.getWidth() - 60, 40);
+        
+        //String de Vidas
+        /*
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
-        g.drawString("Vidas: 0", Game.getWidth() - 60, 20);
+        
+        //g.drawString("Vidas: 0", Game.getWidth() - 60, 20);
+        g.drawString("Vidas = " + player.getVidasText(), Game.getWidth() - 60, 20);
+*/
+        
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
         g.drawString("CONTROLES: ", 20, 20);
