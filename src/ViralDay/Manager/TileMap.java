@@ -129,6 +129,11 @@ public class TileMap extends Item {
                 g.drawImage(Assets.lvlb, x + width * 6, y, width, height, null);
                 g.drawImage(Assets.lvlb, x + width * 7, y, width, height, null);
                 g.drawImage(Assets.lvlb, x + width * 8, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 9, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 10, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 11, y, width, height, null);
+                g.drawImage(Assets.lvlb, x + width * 12, y, width, height, null);
+                //g.drawImage(Assets.lvlb, x + width * 13, y, width, height, null);
                 break;
             case 3:
                 g.drawImage(Assets.lvlc, x, y, width, height, null);
@@ -140,6 +145,15 @@ public class TileMap extends Item {
                 g.drawImage(Assets.lvlc, x + width * 6, y, width, height, null);
                 g.drawImage(Assets.lvlc, x + width * 7, y, width, height, null);
                 g.drawImage(Assets.lvlc, x + width * 8, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 9, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 10, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 11, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 12, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 13, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 14, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 15, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 16, y, width, height, null);
+                g.drawImage(Assets.lvlc, x + width * 17, y, width, height, null);
                 break;
             default:
                 break;
