@@ -54,6 +54,9 @@ public class Level1 extends GameState {
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
         g.drawString("Vidas = " + player.getVidasText(), Game.getWidth() - 80, 20);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Ammo = " + player.getAmmoText(), Game.getWidth() - 160, 20);
     }
 
     @Override

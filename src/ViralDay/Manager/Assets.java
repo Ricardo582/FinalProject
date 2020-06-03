@@ -32,6 +32,8 @@ public class Assets {
     public static BufferedImage b5;
     public static BufferedImage b6;
     public static BufferedImage back;
+    
+    public static BufferedImage spraySprites;
     public static BufferedImage blockSprites;
     public static BufferedImage playerSprites;
     public static BufferedImage enemyB1Sprites;
@@ -46,11 +48,13 @@ public class Assets {
     public static BufferedImage enemyP1Sprites;
     public static BufferedImage enemyP2Sprites;
     public static BufferedImage enemyP3Sprites;
+    
     public static BufferedImage playerJump[];
     public static BufferedImage playerFall[];
     public static BufferedImage playerIdle[];
     public static BufferedImage playerAttack[];
     public static BufferedImage playerRun[];
+    public static BufferedImage spSprites[];
     public static BufferedImage enemyB1[];
     public static BufferedImage enemyB2[];
     public static BufferedImage enemyB3[];
@@ -86,6 +90,8 @@ public class Assets {
         blockSprites = ImageLoader.loadImage("/images/block_sprites.png");
         SpriteSheet blockSS = new SpriteSheet(blockSprites);
         
+        //sparysprites
+        spraySprites   = ImageLoader.loadImage("/images/cans.png");
         // getting the sprites frome the picture
         playerSprites = ImageLoader.loadImage("/images/Player.png");
         enemyB1Sprites = ImageLoader.loadImage("/images/EnemyB1.png");
@@ -102,6 +108,7 @@ public class Assets {
         enemyP3Sprites = ImageLoader.loadImage("/images/EnemyP3.png");
         
         // creating array of images before animations
+        SpriteSheet spraySS = new SpriteSheet(spraySprites);
         SpriteSheet playerSS = new SpriteSheet(playerSprites);
         SpriteSheet enemySSB1 = new SpriteSheet(enemyB1Sprites);
         SpriteSheet enemySSB2 = new SpriteSheet(enemyB2Sprites);
@@ -115,6 +122,7 @@ public class Assets {
         SpriteSheet enemySSP1 = new SpriteSheet(enemyP1Sprites);
         SpriteSheet enemySSP2 = new SpriteSheet(enemyP2Sprites);
         SpriteSheet enemySSP3 = new SpriteSheet(enemyP3Sprites);
+        spSprites = new BufferedImage[6];
         playerJump = new BufferedImage[1];
         playerFall = new BufferedImage[1];
         playerIdle = new BufferedImage[3];
@@ -145,6 +153,7 @@ public class Assets {
         }
         
         for (int i = 0; i < 6; i++) {
+            spSprites[i]= spraySS.crop(i*96,0,96,174);
             enemyB1[i] = enemySSB1.crop(i*75, 0, 75, 100);
             enemyB2[i] = enemySSB2.crop(i*75, 0, 75, 100);
             enemyB3[i] = enemySSB3.crop(i*75, 0, 75, 100);

@@ -14,9 +14,11 @@ import java.awt.Graphics;
  */
 public class Virus extends Item{
     public int velX;
+    private boolean colisionConPlayer;
     
     public Virus(int x, int y, int width, int height) {
         super(x, y, width, height);
+        this.colisionConPlayer = false;
         this.velX = 5;
     }
 
@@ -28,5 +30,14 @@ public class Virus extends Item{
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.virus, getX(), getY(), getWidth(), getHeight(), null);
+    }
+    
+    
+    public void setColisionPlayer(boolean status){
+        colisionConPlayer = status;
+    }
+    
+    public boolean getColisionPlayer(){
+        return colisionConPlayer;
     }
 }

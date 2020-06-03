@@ -11,9 +11,11 @@ import java.awt.Graphics;
  */
 public abstract class GameState {
     protected GameStateManager gsm;
+    private int score;
 	
     public GameState(GameStateManager gsm) {
         this.gsm = gsm;
+        this.score = 0;
     }
 
     public abstract void init();
@@ -22,4 +24,11 @@ public abstract class GameState {
     public abstract void handleInput();
     public abstract ReadWrite getRW();
     public abstract TileMap getTileMap();
+    
+    public int getScore(){
+        return score;
+    }
+    public void setScore(int sc){
+        score=sc;
+    }
 }

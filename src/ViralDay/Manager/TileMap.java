@@ -11,6 +11,7 @@ import ViralDay.Entity.Virus;
 import ViralDay.Entity.Player;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
+import ViralDay.Entity.Spray;
 import ViralDay.States.Level1;
 import java.awt.Color;
 import java.awt.Font;
@@ -27,6 +28,7 @@ public class TileMap extends Item {
     private GameState lvl;
     public LinkedList<Enemy> enemies;
     public LinkedList<Block> blocks;
+    public LinkedList<Spray> sprays;
     public LinkedList<Virus> viruses;
     public int currlvl;
     //public Player player = Level1.player;
@@ -37,6 +39,7 @@ public class TileMap extends Item {
         enemies = new LinkedList();
         blocks = new LinkedList();
         viruses = new LinkedList();
+        sprays = new LinkedList();
 
     }
 
@@ -75,6 +78,12 @@ public class TileMap extends Item {
             Enemy temp = new Enemy(randX, -100, 50, 70, this);
             enemies.add(temp);
         }
+        for (int i = 0; i < 3; i++) {
+            int randBlock = (int) (5 + (Math.random() * 120));
+            int randX = (randBlock * 70) + 25;
+            Spray temp = new Spray(randX, -100, 20 , 35, this);
+            sprays.add(temp);
+        }
     }
 
     @Override
@@ -110,6 +119,10 @@ public class TileMap extends Item {
                 bicho.velX = 5;
             }
             bicho.tick();
+        }
+        
+        for (Spray sprays : sprays) {
+            sprays.tick();
         }
     }
 
@@ -159,12 +172,12 @@ public class TileMap extends Item {
         for (Enemy enemigo : enemies) {
             enemigo.render(g);
         }
+        for (Spray sprays : sprays) {
+            sprays.render(g);
+        }
         for (Virus bicho : viruses) {
             bicho.render(g);
         }
-        g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.setColor(Color.black);
-        g.drawString("Puntos: 0", Game.getWidth() - 60, 40);
         
         //String de Vidas
         /*
@@ -195,6 +208,7 @@ public class TileMap extends Item {
         g.drawString("Pausa: ESC", 20, 120);
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
+        g.drawString("Puntos = " + lvl.getScore(), Game.getWidth() - 160, 40);
     }
 
     public void setCurrLvl(int curr) {
