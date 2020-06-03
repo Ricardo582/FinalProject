@@ -4,7 +4,10 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase Animation
+ * Contiene funciones para manejar animaciones
+ * 
+ * @author PalaunuGames
  */
 public class Animation {
 
@@ -15,6 +18,9 @@ public class Animation {
     private BufferedImage[] frames; // to store every image - frame
 
     /**
+     * 
+     * Animation
+     * 
      * Creating the animation with all the frames and the speed for each
      *
      * @param frames an <code>array</code> of images
@@ -29,6 +35,9 @@ public class Animation {
     }
 
     /**
+     * 
+     * getCurrentFrame
+     * 
      * Getting the current frame to paint
      *
      * @return the <code>BufferedImage</code> to the corresponding frame to
@@ -39,6 +48,9 @@ public class Animation {
     }
 
     /**
+     * 
+     * tick
+     * 
      * To update the animation to get the right index of the frame to paint
      */
     public void tick() {

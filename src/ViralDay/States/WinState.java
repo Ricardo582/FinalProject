@@ -11,7 +11,10 @@ import java.awt.Graphics;
 
 /**
  *
- * @author ricar
+ * Clase WinState
+ * Contiene el estado que representa la pantalla de ganar del juego
+ * 
+ * @author PalaunuGames
  */
 public class WinState extends GameState {
     private int alpha;
@@ -22,14 +25,35 @@ public class WinState extends GameState {
     private final int LENGTH = 100;
     private final int FADE_OUT = 100;
 
+    /**
+     * WinState
+     * 
+     * constructor del estado
+     * 
+     * @param gsm -> objeto GameStateManager que lo llama (GameStateManager)
+     */
     public WinState(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * init
+     * 
+     * inicializacion de estado
+     * 
+     * @return Null
+     */
     public void init() {
         ticks = 0;
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @return Null
+     */
     public void tick() {
         handleInput();
         ticks++;
@@ -54,6 +78,13 @@ public class WinState extends GameState {
         }
     }
 
+    /**
+     * render
+     * 
+     * rendereo del objeto
+     * 
+     * @param g -> objeto de graficos (Graphics)
+     */
     public void render(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
@@ -62,32 +93,74 @@ public class WinState extends GameState {
         g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
     }
 
+    /**
+     * handleInput
+     * 
+     * Manejador de input de teclado
+     * 
+     * @return Null
+     */
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ENTER)) {
             gsm.setState(GameStateManager.MENU);
         }
     }
 
+    /**
+     * getRW
+     * 
+     * Retorna el objeto ReadWrite para manejar archivos
+     * 
+     * @return Null
+     */
     @Override
     public ReadWrite getRW() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * getTileMap
+     * 
+     * Retorna el objeto TileMap desde el que se manejan todos los objetos
+     * 
+     * @return Null
+     */
     @Override
     public TileMap getTileMap() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * getGSM
+     * 
+     * Retorna el GameStateManager
+     * 
+     * @return gsm -> objeto GameStateManager (GameStateManager)
+     */
     @Override
     public GameStateManager getGSM() {
         return gsm;
     }
 
+    /**
+     * Save
+     * 
+     * Guarda la partida en un slot especifico
+     * 
+     * @param slot -> slot en el que se guarda la partida (int)
+     */
     @Override
     public void Save(int slot) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Load
+     * 
+     * Carga la partida de un slot especifico
+     * 
+     * @return gameStates[currentState].Load() -> manda a llamar a la funcion load del state actual
+     */
     @Override
     public GameState Load() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

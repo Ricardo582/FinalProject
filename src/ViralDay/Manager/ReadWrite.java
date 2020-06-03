@@ -11,7 +11,10 @@ import java.util.LinkedList;
 
 /**
  *
- * @author hgm
+ * Clase ReadWrite
+ * Manejador de lectura/escritura de archivos
+ * 
+ * @author PalaunuGames
  */
 public class ReadWrite {
     
@@ -20,10 +23,27 @@ public class ReadWrite {
     private int enemyX, enemyY, enemyColor;
     private int tmX, tmY;
     private int virusX, virusY;
+    
+    /**
+     * 
+     * ReadWrite
+     * 
+     * Constructor de la clase
+     * 
+     * @param lvl -> nivel actual (GameState)
+     */
     public ReadWrite(GameState lvl){
         this.lvl = lvl;
     }
     
+    /**
+     * 
+     * Save
+     * 
+     * Guarda los datos relevantes de la partida en un archivo
+     * 
+     * @param strFileName -> nombre del archivo de guardado (str)
+     */
     public void Save(String strFileName){
         try{
             System.out.println("Saving...");
@@ -61,6 +81,14 @@ public class ReadWrite {
         }
     }
     
+    /**
+     * 
+     * Load
+     * 
+     * Carga los datos relevantes de la partida de un archivo
+     * 
+     * @param strFileName -> nombre del archivo de guardado (str)
+     */
     public void Load(String strFileName){
         try{
             System.out.println("Loading...");
@@ -95,6 +123,15 @@ public class ReadWrite {
         }
     }
     
+    /**
+     * 
+     * tileRead
+     * 
+     * genera una matriz representando el mapa para generar todos los objetos por nivel
+     * 
+     * @param strFileName -> nombre del archivo de nivel (str)
+     * @return mat -> matriz de enteros representando el mapa de genracion de Tilemap (int [][])
+     */
     public int[][] tileRead(String strFileName){
         int[][] mat;
         mat = new int[10][128];
@@ -129,6 +166,14 @@ public class ReadWrite {
         return mat;
     }
     
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @param Null
+     * @return Null
+     */
     public void tick(){
         /*
         if(game.getKeyManager().g){

@@ -4,13 +4,18 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase SpriteSheet
+ * Contiene funciones para el manejo de Sprites usadas para animaciones
+ * 
+ * @author PalaunuGames
  */
 public class SpriteSheet {
 
     private BufferedImage sheet;    // to store the spritesheet
 
     /**
+     * SpriteSheet
+     * 
      * Create a new spritesheet
      *
      * @param sheet the <code>image</code> with the sprites
@@ -20,6 +25,8 @@ public class SpriteSheet {
     }
 
     /**
+     * Crop
+     * 
      * Crop a sprite from the spritesheet
      *
      * @param x an <code>int</code> value with the x coordinate

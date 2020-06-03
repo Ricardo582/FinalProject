@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ViralDay.Manager;
 
 import ViralDay.Entity.Block;
@@ -19,7 +14,10 @@ import java.util.LinkedList;
 
 /**
  *
- * @author hgm
+ * Clase TileMap
+ * Contiene funciones para generacion de niveles y maneja las entidades de los objetos (exceptuando jugador)
+ * 
+ * @author PalaunuGames
  */
 public class TileMap extends Item {
 
@@ -30,6 +28,18 @@ public class TileMap extends Item {
     public LinkedList<Virus> viruses;
     public int currlvl;
 
+    /**
+     *  TileMap
+     * 
+     *  Constructor de TileMap
+     * 
+     *  @param x -> posicion en x (int)
+     *  @param y -> posicion en y (int)
+     *  @param width -> ancho del objeto (int)
+     *  @param height -> alto del objeto (int)
+     *  @param lvl -> objeto GameState (GameState)
+     *  @return Null
+     */
     public TileMap(int x, int y, int width, int height, GameState lvl) {
         super(x, y, width, height);
         this.lvl = lvl;
@@ -40,6 +50,13 @@ public class TileMap extends Item {
 
     }
 
+    /**
+     * init
+     * 
+     * inicializa el tilemap y manda a generar los objetos del nivel
+     * 
+     * @return Null
+     */
     public void init() {
         int[][] tilemap = new int[10][128];
         switch (currlvl) {
@@ -59,6 +76,12 @@ public class TileMap extends Item {
         //genera enemigos de acuerdo al nivel
     }
 
+    /**
+     * generateMap
+     * 
+     * Genera los objetos del nivel de acuerdo a el mapa que se lee de un archivo
+     * @param mat -> representa una matriz de mapa donde se indican la posicion de generacion de los objetos (int [][])
+     */
     public void generateMap(int[][] mat) {
         System.out.println("Generando mapa... ");
         for (int i = 0; i < 10; i++) {
@@ -83,6 +106,14 @@ public class TileMap extends Item {
         }
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto, manda a llamar los tick de las clases internas
+     * 
+     * @param Null
+     * @return Null
+     */
     @Override
     public void tick() {
         if (KeyManager.isDown(KeyManager.LEFT)) {
@@ -122,6 +153,14 @@ public class TileMap extends Item {
         }
     }
 
+    /**
+     * render
+     * 
+     * render del objeto, manda a llamar el render de las clases internas
+     * 
+     * @param g -> graficos del videojuego (Graphics)
+     * @return Null
+     */
     @Override
     public void render(Graphics g) {
         switch (currlvl) {
@@ -210,14 +249,34 @@ public class TileMap extends Item {
         g.setFont(new Font("Arial", Font.BOLD, 12));
     }
 
+    /**
+     * setCurrLvl
+     * 
+     * modifica el nivel al que pertenece el tilemap
+     * 
+     * @param curr -> representa nivel al que se cambiara (int)
+     */
     public void setCurrLvl(int curr) {
         currlvl = curr;
     }
     
+    /**
+     * getEnemies
+     * 
+     * Retorna una linkedlist con todos los objetos enemigos que estan en el tilemap
+     * 
+     * @return enemies -> linkedlist con todos los enemigos en tilemap (LinkedList<Enemy>)
+     */
     public LinkedList getEnemies() {
         return enemies;
     }
     
+    /**
+     * getCurrLvlState
+     * 
+     * retorna el estado del nivel actual de tilemap
+     * @return int -> estado del nivel actual de tilemap (int)
+     */
     public int getCurrLvlState() {
         switch(currlvl) {
             case 1:

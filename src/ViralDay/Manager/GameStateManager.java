@@ -18,7 +18,10 @@ import java.awt.Graphics;
 
 /**
  *
- * @author ricar
+ * Clase GameStateManager
+ * Maneja las pantallas del juego
+ * 
+ * @author PalaunuGames
  */
 public class GameStateManager {
 
@@ -42,7 +45,16 @@ public class GameStateManager {
     public static final int LEVEL3 = 9;
     public static final int GAMEOVER = 10;
     public static final int WIN = 11;
-
+    
+    /**
+     * 
+     * GameStateManager
+     * 
+     * Constructor de la clase
+     * 
+     * @param Null
+     * @return Null
+     */
     public GameStateManager() {
         paused = false;
         pauseState = new PauseState(this);
@@ -51,6 +63,14 @@ public class GameStateManager {
         setState(INTRO);
     }
 
+    /**
+     * setState
+     * 
+     * Modifica el estado (pantalla) en el que se encuentra
+     * 
+     * @param state -> representa una pantalla a la que se cambia (int)
+     * @return Null
+     */
     public void setState(int state) {
         previousState = currentState;
         unloadState(previousState);
@@ -94,15 +114,39 @@ public class GameStateManager {
         }
     }
 
+    /**
+     * 
+     * unloadState
+     * 
+     * funcion que descarga los estados (pantallas)
+     * 
+     * @param i -> representa el estado a descargar (int)
+     */
     public void unloadState(int i) {
         gameStates[i] = null;
     }
 
+    /**
+     * 
+     * setPaused
+     * 
+     * funcion que activa el estado en pausa
+     * 
+     * @param b -> representa si esta en pausa o no (boolean)
+     */
     public void setPaused(boolean b) {
         paused = b;
         pauseState.init();
     }
 
+    /**
+     * tick
+     * 
+     * manda a llamar al tick del estado actual
+     * 
+     * @param Null
+     * @return Null
+     */
     public void tick() {
         if (paused) {
             pauseState.tick();
@@ -111,6 +155,14 @@ public class GameStateManager {
         }
     }
 
+    /**
+     * render
+     * 
+     * genera los graficos y manda a llamar al render del estado actual
+     * 
+     * @param g -> objeto de Graficos (Graphics)
+     * @return Null
+     */
     public void render(Graphics g) {
         if (paused) {
             pauseState.render(g);
@@ -119,10 +171,26 @@ public class GameStateManager {
         }
     }
     
+    /**
+     * 
+     * Save
+     * 
+     * Guarda la partida en un slot especifico
+     * 
+     * @param slot -> slot en el que se guarda la partida (int)
+     */
     public void Save(int slot) {
         gameStates[currentState].Save(slot);
     }
     
+    /**
+     * 
+     * Load
+     * 
+     * Carga la partida de un slot especifico
+     * 
+     * @return gameStates[currentState].Load() -> manda a llamar a la funcion load del state actual
+     */
     public GameState Load() {
         return gameStates[currentState].Load();
     }

@@ -2,6 +2,13 @@ package ViralDay.Manager;
 
 import java.awt.event.KeyEvent;
 
+/**
+ *
+ * Clase KeyManager
+ * Genera un listener del teclado
+ * 
+ * @author PalaunuGames
+ */
 public class KeyManager {
     
     public boolean pause; // pause
@@ -21,6 +28,15 @@ public class KeyManager {
     public static int ESCAPE = 6;
     public static int F1 = 7;
     
+    /**
+     * 
+     * keySet
+     * 
+     * cambia el estado de la tecla que es presionada o soltada
+     * 
+     * @param i -> tecla que tuvo reaccion (int)
+     * @param b -> estado de la tecla (boolean)
+     */
     public static void keySet(int i, boolean b) {
         switch (i) {
             case KeyEvent.VK_UP:
@@ -52,20 +68,55 @@ public class KeyManager {
         }
     }
 
+    /**
+     * tick
+     * 
+     * guarda el estado anterior para evitar repeticiones
+     * 
+     * @param Null
+     * @return Null
+     */
     public void tick() {
         for (int i = 0; i < NUM_KEYS; i++) {
             prevKeyState[i] = keyState[i];
         }
     }
 
+    /**
+     * 
+     * isPressed
+     * 
+     * Se manda a llamar cuando una tecla es presionada
+     * 
+     * @param i -> numero que representa la tecla (int)
+     * @return keyState[i] && !prevKeyState[i] -> retorna la tecla presionada si no se repite la señal anterior(boolean)
+     */
     public static boolean isPressed(int i) {
         return keyState[i] && !prevKeyState[i];
     }
 
+    /**
+     * 
+     * isDown
+     * 
+     * Se manda a llamar cuando una tecla es presionada
+     * 
+     * @param i -> numero que representa la tecla (int)
+     * @return keyState[i] -> retorna el estado de la tecla presionada (boolean)
+     */
     public static boolean isDown(int i) {
         return keyState[i];
     }
 
+    /**
+     * 
+     * anyKeyDown
+     * 
+     * Se manda a llamar cuando cualquier tecla es presionada
+     * 
+     * @param i -> numero que representa la tecla (int)
+     * @return true -> si la tecla presionada es alguna de las definidas(boolean)
+     */
     public static boolean anyKeyDown() {
         for (int i = 0; i < NUM_KEYS; i++) {
             if (keyState[i]) {
@@ -75,6 +126,15 @@ public class KeyManager {
         return false;
     }
 
+    /**
+     * 
+     * anyKeyPress
+     * 
+     * Se manda a llamar cuando cualquier tecla es presionada
+     * 
+     * @param i -> numero que representa la tecla (int)
+     * @return true -> si la tecla presionada es alguna de las definidas y no se repite con la anterior(boolean)
+     */
     public static boolean anyKeyPress() {
         for (int i = 0; i < NUM_KEYS; i++) {
             if (keyState[i] && !prevKeyState[i]) {

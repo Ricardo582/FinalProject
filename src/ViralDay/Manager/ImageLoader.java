@@ -8,11 +8,17 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase ImageLoader
+ * Contiene funcione para la importacion de imagenes
+ * 
+ * @author PalaunuGames
  */
 public class ImageLoader {
 
     /**
+     * 
+     * loadImage
+     * 
      * to get an image from the file path
      *
      * @param path it is the path of the file

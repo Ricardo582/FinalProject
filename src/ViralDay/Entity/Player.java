@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ViralDay.Entity;
 
 import ViralDay.Manager.Animation;
@@ -14,7 +9,10 @@ import java.awt.Graphics;
 
 /**
  *
- * @author hgm
+ * Clase Player
+ * Representa al jugador
+ * 
+ * @author PalaunuGames
  */
 public class Player extends Item {
     public GameState lvl;
@@ -34,6 +32,19 @@ public class Player extends Item {
     private int ammo = 3;
     
 
+    /**
+     *  Player
+     * 
+     *  Constructor de Player
+     * 
+     *  @param x -> posicion en x (int)
+     *  @param y -> posicion en y (int)
+     *  @param width -> ancho del objeto (int)
+     *  @param height -> alto del objeto (int)
+     *  @param lvl -> objeto GameState (GameState)
+     *  @param tm -> objeto tilemap (TileMap)
+     *  @return Null
+     */
     public Player(int x, int y, int width, int height, GameState lvl, TileMap tm) {
         super(x, y, width, height);
         this.lvl = lvl;
@@ -45,6 +56,14 @@ public class Player extends Item {
         this.attack= new Animation(Assets.playerAttack, 150);
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @param Null
+     * @return Null
+     */
     @Override
     public void tick() {
         this.run.tick();
@@ -131,6 +150,14 @@ public class Player extends Item {
         }
     }
 
+    /**
+     * render
+     * 
+     * render del objeto
+     * 
+     * @param g -> graficos del videojuego (Graphics)
+     * @return Null
+     */
     @Override
     public void render(Graphics g) {
         if (jumpFlag) {
@@ -146,31 +173,86 @@ public class Player extends Item {
         }
     }
     
+    /**
+     * setVelY
+     * 
+     * modifica la Velocidad en y del objeto
+     * 
+     * @param velY -> Velocidad en y del objeto (int)
+     * @return Null
+     */
     public void setVelY(int velY) {
         this.velY = velY;
     }
     
-    //Se agrega set y get de vidas
+    /**
+     * setVidas
+     * 
+     * modifica las vidas del Player
+     * 
+     * @param vidas -> Vidas que tiene el jugador (int)
+     * @return Null
+     */
     public void setVidas(int vidas) {
         this.vidas = vidas;
     }
     
+    /**
+     * getVidas
+     * 
+     * retorna las vidas del jugador
+     * 
+     * @param Null
+     * @return vidas -> Vidas que tiene el jugador (int)
+     */
     public int getVidas() {
         return this.vidas;
     }
     
-    //AMMO
+    /**
+     * getAmmo
+     * 
+     * retorna la municion del jugador
+     * 
+     * @param Null
+     * @return ammo -> municion que tiene el jugador (int)
+     */
     public int getAmmo() {
         return this.ammo;
     }
     
+    /**
+     * setAmmo
+     * 
+     * modifica la municion del Player
+     * 
+     * @param ammo -> municion que tiene el jugador (int)
+     * @return Null
+     */
     public void setAmmo(int ammo) {
         this.ammo = ammo;
     }
+    
+    /**
+     * getAmmoText
+     * 
+     * retorna la municion del jugador en string
+     * 
+     * @param Null
+     * @return ammo -> municion que tiene el jugador (str)
+     */
     public String getAmmoText(){
         return Integer.toString(getAmmo());
     }
     
+    /**
+     * getVidasText
+     * 
+     * retorna las vidas del jugador en string
+     * 
+     * @param Null
+     * @return vidas -> Vidas que tiene el jugador (str)
+     */
     public String getVidasText(){
         return Integer.toString(getVidas());
     }

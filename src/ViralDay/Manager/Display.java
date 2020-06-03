@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase Display
+ * Genera la ventana para el juego
+ * 
+ * @author PalaunuGames
  */
 public class Display {
 
@@ -18,11 +21,13 @@ public class Display {
     private int height;     // height of the window
 
     /**
-     * initializes the values for the application game
+     * Display
+     * 
+     * inicializa los valores para la applicacion juego
      *
-     * @param title to display the title of the window
-     * @param width to set the width
-     * @param height to set the height
+     * @param title para seleccionar el titulo de la ventana
+     * @param width la anchura de la ventana
+     * @param height la altura de la ventana
      */
     public Display(String title, int width, int height) {
         this.title = title;
@@ -32,7 +37,13 @@ public class Display {
     }
 
     /**
-     * create the app and the canvas and add the canvas to the window app
+     * 
+     * createDisplay
+     * 
+     * genera la ventana y el canvas
+     * 
+     * @param Null
+     * @return Null
      */
     public void createDisplay() {
         // create the app window
@@ -61,18 +72,26 @@ public class Display {
     }
 
     /**
-     * to get the jframe of the game
+     * 
+     * getJframe
+     * 
+     * retorna el objeto Jframe de la ventana
      *
-     * @return jframe
+     * @param Null
+     * @return jframe -> objeto Jframe de la ventana (JFrame)
      */
     public JFrame getJframe() {
         return jframe;
     }
 
     /**
-     * to get the canvas of the game
+     * 
+     * getCanvas
+     * 
+     * retorna el canvas de la ventana
      *
-     * @return the canvas
+     * @param Null
+     * @return canvas -> objeto Canvas de la ventana (Canvas)
      */
     public Canvas getCanvas() {
         return canvas;

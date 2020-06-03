@@ -11,7 +11,10 @@ import ViralDay.Manager.KeyManager;
 
 /**
  *
- * @author ricar
+ * Clase PauseState
+ * Contiene el estado que representa el juego en pausa
+ * 
+ * @author PalaunuGames
  */
 public class PauseState extends GameState {
 
@@ -22,20 +25,48 @@ public class PauseState extends GameState {
     private boolean Load = false;
     private ReadWrite RW;
 
+    /**
+     * PauseState
+     * 
+     * constructor del estado
+     * 
+     * @param gsm -> objeto GameStateManager que lo llama (GameStateManager)
+     */
     public PauseState(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * init
+     * 
+     * inicializacion de estado
+     * 
+     * @return Null
+     */
     public void init() {
         timer = 0;
         RW = new ReadWrite(this);
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @return Null
+     */
     public void tick() {
         timer++;
         handleInput();
     }
 
+    /**
+     * render
+     * 
+     * rendereo del objeto
+     * 
+     * @param g -> objeto de graficos (Graphics)
+     */
     public void render(Graphics g) {
         if (timer < 1) {
             g.drawImage(Assets.backPause, 0, 0, Game.getWidth(), Game.getHeight(), null);
@@ -85,6 +116,13 @@ public class PauseState extends GameState {
         }
     }
 
+    /**
+     * handleInput
+     * 
+     * Manejador de input de teclado
+     * 
+     * @return Null
+     */
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ESCAPE)) {
             if (Save) {
@@ -126,6 +164,13 @@ public class PauseState extends GameState {
         }
     }
 
+    /**
+     * selectOption
+     * 
+     * Carga el estado de acuerdo a la opcion seleccionada
+     * 
+     * @return Null
+     */
     private void selectOption() {
         switch (currentOption) {
             case 0:
@@ -148,6 +193,13 @@ public class PauseState extends GameState {
         }
     }
     
+    /**
+     * selectOptionSave
+     * 
+     * Guarda la partida de acuerdo a la opcion seleccionada
+     * 
+     * @return Null
+     */
     private void selectOptionSave() {
         switch (currentOptionSave) {
             case 0:
@@ -171,6 +223,13 @@ public class PauseState extends GameState {
         }
     }
     
+    /**
+     * selectOptionLoad
+     * 
+     * Carga la partida de acuerdo a la opcion seleccionada
+     * 
+     * @return Null
+     */
     private void selectOptionLoad() {
         switch (currentOptionSave) {
             case 0:
@@ -194,26 +253,61 @@ public class PauseState extends GameState {
         }
     }
 
+    /**
+     * getRW
+     * 
+     * Retorna el objeto ReadWrite para manejar archivos
+     * 
+     * @return Null
+     */
     @Override
     public ReadWrite getRW() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * getTileMap
+     * 
+     * Retorna el objeto TileMap desde el que se manejan todos los objetos
+     * 
+     * @return Null
+     */
     @Override
     public TileMap getTileMap() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * getGSM
+     * 
+     * Retorna el GameStateManager
+     * 
+     * @return gsm -> objeto GameStateManager (GameStateManager)
+     */
     @Override
     public GameStateManager getGSM() {
         return gsm;
     }
 
+    /**
+     * Save
+     * 
+     * Guarda la partida en un slot especifico
+     * 
+     * @param slot -> slot en el que se guarda la partida (int)
+     */
     @Override
     public void Save(int slot) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Load
+     * 
+     * Carga la partida de un slot especifico
+     * 
+     * @return gameStates[currentState].Load() -> manda a llamar a la funcion load del state actual
+     */
     @Override
     public GameState Load() {
         return gsm.Load();

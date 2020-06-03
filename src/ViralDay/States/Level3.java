@@ -13,7 +13,10 @@ import java.awt.Graphics;
 
 /**
  *
- * @author ricar
+ * Clase Level3
+ * Contiene el estado del juego que muestra el nivel 3
+ * 
+ * @author PalaunuGames
  */
 public class Level3 extends GameState {
 
@@ -23,10 +26,24 @@ public class Level3 extends GameState {
     private Player player;          // to store the ball
     private ReadWrite RW;
 
+    /**
+     * Level3
+     * 
+     * constructor del estado
+     * 
+     * @param gsm -> objeto GameStateManager que lo llama (GameStateManager)
+     */
     public Level3(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * init
+     * 
+     * inicializacion de estado
+     * 
+     * @return Null
+     */
     @Override
     public void init() {
         tileMap = new TileMap(0, -150, 1000, 750, this);
@@ -36,6 +53,13 @@ public class Level3 extends GameState {
         player = new Player(200, 500, 50, 70, this, tileMap);
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto, y llamada a tick de objetos internos
+     * 
+     * @return Null
+     */
     @Override
     public void tick() {
         handleInput();
@@ -50,6 +74,13 @@ public class Level3 extends GameState {
         }
     }
 
+    /**
+     * render
+     * 
+     * rendereo del objeto, y llamada a render de objetos internos
+     * 
+     * @param g -> objeto de graficos (Graphics)
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.back, 0, 0, Game.getWidth(), Game.getHeight(), null);
@@ -65,6 +96,13 @@ public class Level3 extends GameState {
         g.drawString("Ammo = " + player.getAmmoText(), Game.getWidth() - 160, 20);
     }
 
+    /**
+     * handleInput
+     * 
+     * Manejador de input de teclado
+     * 
+     * @return Null
+     */
     @Override
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ESCAPE)) {
@@ -91,19 +129,47 @@ public class Level3 extends GameState {
         }
     }
     
+    /**
+     * getTileMap
+     * 
+     * Retorna el objeto TileMap desde el que se manejan todos los objetos
+     * 
+     * @return tileMap -> objeto TileMap del nivel (TileMap)
+     */
     public TileMap getTileMap() {
         return tileMap;
     }
     
+    /**
+     * getRW
+     * 
+     * Retorna el objeto ReadWrite para manejar archivos
+     * 
+     * @return RW -> objeto ReadWrite del nivel (ReadWrite)
+     */
     public ReadWrite getRW(){
         return RW;
     }
     
+    /**
+     * getGSM
+     * 
+     * Retorna el GameStateManager
+     * 
+     * @return gsm -> objeto GameStateManager (GameStateManager)
+     */
     @Override
     public GameStateManager getGSM() {
         return gsm;
     }
 
+    /**
+     * Save
+     * 
+     * Guarda la partida en un slot especifico
+     * 
+     * @param slot -> slot en el que se guarda la partida (int)
+     */
     public void Save(int slot) {
         switch(slot) {
             case 1:
@@ -120,6 +186,13 @@ public class Level3 extends GameState {
         }
     }
 
+    /**
+     * Load
+     * 
+     * Carga la partida de un slot especifico
+     * 
+     * @return gsm.load() -> manda a llamar a load de GameStateManager
+     */
     @Override
     public GameState Load() {
         return gsm.Load();

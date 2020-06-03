@@ -7,7 +7,10 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase Assets
+ * Contiene manejador para importar los assets al juego
+ * 
+ * @author PalaunuGames
  */
 public class Assets {
 
@@ -101,7 +104,13 @@ public class Assets {
     public static BufferedImage enemyP3[];
 
     /**
-     * initializing the images of the game
+     * 
+     * init
+     * 
+     * Inicializa las imagenes del juego
+     * 
+     * @param Null
+     * @return Null
      */
     public static void init() {
         menu = ImageLoader.loadImage("/images/Screen/Menu.png");

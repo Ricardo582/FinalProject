@@ -9,7 +9,10 @@ import java.awt.image.BufferStrategy;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase Game
+ * Genera el juego
+ * 
+ * @author PalaunuGames
  */
 public class Game implements Runnable, KeyListener {
 
@@ -25,11 +28,15 @@ public class Game implements Runnable, KeyListener {
     private GameStateManager gsm;
 
     /**
+     * 
+     * Game
+     * 
      * to create title, width and height and set the game is still not running
      *
      * @param title to set the title of the window
      * @param width to set the width of the window
      * @param height to set the height of the window
+     * @return Null
      */
     public Game(String title, int width, int height) {
         this.title = title;
@@ -39,7 +46,13 @@ public class Game implements Runnable, KeyListener {
     }
 
     /**
+     * 
+     * init
+     * 
      * initializing the display window of the game
+     * 
+     * @param Null
+     * @return Null
      */
     private void init() {
         display = new Display(title, getWidth(), getHeight());
@@ -49,6 +62,15 @@ public class Game implements Runnable, KeyListener {
         keyManager = new KeyManager();
     }
 
+    /**
+     * 
+     * run
+     * 
+     * Manda a inicializar el juego y define la velocidad de este
+     * 
+     * @param Null
+     * @return Null
+     */
     @Override
     public void run() {
         init();
@@ -87,11 +109,27 @@ public class Game implements Runnable, KeyListener {
         stop();
     }
 
+    /**
+     * tick
+     * 
+     * manda a llamar al tick de las clases inferiores
+     * 
+     * @param Null
+     * @return Null
+     */
     private void tick() {
         gsm.tick();
         keyManager.tick();
     }
 
+    /**
+     * render
+     * 
+     * genera los graficos y manda a llamar al render de las clases inferiores
+     * 
+     * @param Null
+     * @return Null
+     */
     private void render() {
         // get the buffer strategy from the display
         bs = display.getCanvas().getBufferStrategy();
@@ -113,7 +151,13 @@ public class Game implements Runnable, KeyListener {
     }
 
     /**
+     * 
+     * start
+     * 
      * setting the thread for the game
+     * 
+     * @param Null
+     * @return Null
      */
     public synchronized void start() {
         if (!running) {
@@ -124,7 +168,13 @@ public class Game implements Runnable, KeyListener {
     }
 
     /**
+     * 
+     * stop
+     * 
      * stopping the thread
+     * 
+     * @param Null
+     * @return Null
      */
     public synchronized void stop() {
         if (running) {
@@ -138,6 +188,9 @@ public class Game implements Runnable, KeyListener {
     }
     
     /**
+     * 
+     * getWidth
+     * 
      * To get the width of the game window
      *
      * @return an <code>int</code> value with the width
@@ -147,6 +200,9 @@ public class Game implements Runnable, KeyListener {
     }
 
     /**
+     * 
+     * getHeight
+     * 
      * To get the height of the game window
      *
      * @return an <code>int</code> value with the height
@@ -155,15 +211,42 @@ public class Game implements Runnable, KeyListener {
         return height;
     }
     
+    /**
+     * 
+     * keyTyped
+     * 
+     * se acciona cuando alguna tecla es tecleada
+     * 
+     * @param e -> evento de teclado (KeyEvent)
+     * @return Null
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * 
+     * keyPressed
+     * 
+     * se acciona cuando alguna tecla es presionada
+     * 
+     * @param e -> evento de teclado (KeyEvent)
+     * @return Null
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         keyManager.keySet(e.getKeyCode(), true);
     }
 
+    /**
+     * 
+     * keyReleased
+     * 
+     * se acciona cuando alguna tecla es soltada
+     * 
+     * @param e -> evento de teclado (KeyEvent)
+     * @return Null
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         keyManager.keySet(e.getKeyCode(), false);

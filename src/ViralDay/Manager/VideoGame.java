@@ -2,11 +2,18 @@ package ViralDay.Manager;
 
 /**
  *
- * @author RicardoGomez and HeribertoGil
+ * Clase VideoGame
+ * Genera la aplicacion del juego
+ * 
+ * @author PalaunuGames
  */
 public class VideoGame {
 
     /**
+     * main
+     * 
+     * main del que se empieza a generar todo el juego
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

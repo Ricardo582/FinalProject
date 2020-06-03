@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ViralDay.States;
 
 import ViralDay.Manager.Assets;
@@ -15,25 +10,56 @@ import java.awt.Graphics;
 
 /**
  *
- * @author ricar
+ * Clase OptionState
+ * Contiene el estado que representa la pantalla de opciones dle juego
+ * 
+ * @author PalaunuGames
  */
 public class OptionsState extends GameState {
     private int currentOption = 0;
     private int SFXVol = 4;
     private int MusicVol = 4;
     
+    /**
+     * OptionsState
+     * 
+     * constructor del estado
+     * 
+     * @param gsm -> objeto GameStateManager que lo llama (GameStateManager)
+     */
     public OptionsState(GameStateManager gsm) {
         super(gsm);
     }
 
+    /**
+     * init
+     * 
+     * inicializacion de estado
+     * 
+     * @return Null
+     */
     @Override
     public void init() {}
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @return Null
+     */
     @Override
     public void tick() {
         handleInput();
     }
 
+    /**
+     * render
+     * 
+     * rendereo del objeto
+     * 
+     * @param g -> objeto de graficos (Graphics)
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.LS, 0, 0, Game.getWidth(), Game.getHeight(), null);
@@ -57,6 +83,13 @@ public class OptionsState extends GameState {
         }
     }
 
+    /**
+     * handleInput
+     * 
+     * Manejador de input de teclado
+     * 
+     * @return Null
+     */
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ESCAPE)) {
             gsm.setState(GameStateManager.MENU);
@@ -104,6 +137,13 @@ public class OptionsState extends GameState {
         }
     }
 
+    /**
+     * selectOption
+     * 
+     * Carga el estado de acuerdo a la opcion seleccionada
+     * 
+     * @return Null
+     */
     private void selectOption() {
         switch (currentOption) {
             case 0:
@@ -118,26 +158,61 @@ public class OptionsState extends GameState {
         }
     }
 
+    /**
+     * getRW
+     * 
+     * Retorna el objeto ReadWrite para manejar archivos
+     * 
+     * @return Null
+     */
     @Override
     public ReadWrite getRW() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * getTileMap
+     * 
+     * Retorna el objeto TileMap desde el que se manejan todos los objetos
+     * 
+     * @return Null
+     */
     @Override
     public TileMap getTileMap() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * getGSM
+     * 
+     * Retorna el GameStateManager
+     * 
+     * @return gsm -> objeto GameStateManager (GameStateManager)
+     */
     @Override
     public GameStateManager getGSM() {
         return gsm;
     }
 
+    /**
+     * Save
+     * 
+     * Guarda la partida en un slot especifico
+     * 
+     * @param slot -> slot en el que se guarda la partida (int)
+     */
     @Override
     public void Save(int slot) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Load
+     * 
+     * Carga la partida de un slot especifico
+     * 
+     * @return gameStates[currentState].Load() -> manda a llamar a la funcion load del state actual
+     */
     @Override
     public GameState Load() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

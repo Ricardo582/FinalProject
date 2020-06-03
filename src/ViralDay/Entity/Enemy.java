@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ViralDay.Entity;
 
 import ViralDay.Manager.Animation;
@@ -12,7 +7,10 @@ import java.awt.Graphics;
 
 /**
  *
- * @author hgm
+ * Clase Enemy
+ * Representa los enemigos que estaran en el juego
+ * 
+ * @author PalaunuGames
  */
 public class Enemy extends Item {
 
@@ -22,6 +20,19 @@ public class Enemy extends Item {
     private boolean colisionConPlayer;
     public boolean stand;
 
+    /**
+     *  Enemy
+     * 
+     *  Constructor de enemigo
+     * 
+     *  @param x -> posicion en x (int)
+     *  @param y -> posicion en y (int)
+     *  @param width -> ancho del objeto (int)
+     *  @param height -> alto del objeto (int)
+     *  @param color -> diferenciador para mostrar diferentes tipos de enemigos (int)
+     *  @param tm -> objeto tilemap (TileMap)
+     *  @return Null
+     */
     public Enemy(int x, int y, int width, int height, int color, TileMap tm) {
         super(x, y, width, height);
         this.tm = tm;
@@ -73,6 +84,14 @@ public class Enemy extends Item {
         }
     }
 
+    /**
+     * tick
+     * 
+     * tickeo del objeto
+     * 
+     * @param Null
+     * @return Null
+     */
     @Override
     public void tick() {
         this.enemy.tick();
@@ -86,23 +105,63 @@ public class Enemy extends Item {
         }
     }
 
+    /**
+     * render
+     * 
+     * render del objeto
+     * 
+     * @param g -> graficos del videojuego (Graphics)
+     * @return Null
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(enemy.getCurrentFrame(), getX(), getY(), (getWidth() * -1), getHeight(), null);
     }
 
+    /**
+     * getColor
+     * 
+     * funcion que retorna el tipo de enemigo que es
+     * 
+     * @param Null
+     * @return color -> diferenciador para mostrar diferentes tipos de enemigos (int)
+     */
     public int getColor() {
         return this.color;
     }
     
+    /**
+     * setColor
+     * 
+     * funcion que define la variable color
+     * 
+     * @param color -> diferenciador para mostrar diferentes tipos de enemigos (int)
+     * @return Null
+     */
     public void setColor(int color) {
         this.color = color;
     }
     
+    /**
+     * setColisionPlayer
+     * 
+     * funcion que define la variable colisionConPlayer
+     * 
+     * @param status -> variable que indica la colision con player (boolean)
+     * @return Null
+     */
     public void setColisionPlayer(boolean status){
         colisionConPlayer = status;
     }
     
+    /**
+     * getColisionPlayer
+     * 
+     * funcion que retorna si el enemigo esta colisionando con player
+     * 
+     * @param Null
+     * @return colisionConPlayer -> flag que indica la colision con player (boolean)
+     */
     public boolean getColisionPlayer(){
         return colisionConPlayer;
     }
