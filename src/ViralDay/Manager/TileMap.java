@@ -101,6 +101,7 @@ public class TileMap extends Item {
                 g.drawImage(Assets.lvla, x + width * 6, y, width, height, null);
                 g.drawImage(Assets.lvla, x + width * 7, y, width, height, null);
                 g.drawImage(Assets.lvla, x + width * 8, y, width, height, null);
+                g.drawImage(Assets.Drugstore, x + width * 8, 305, 300, 250, null);
                 break;
             case 2:
                 g.drawImage(Assets.lvlb, x, y, width, height, null);
@@ -112,6 +113,7 @@ public class TileMap extends Item {
                 g.drawImage(Assets.lvlb, x + width * 6, y, width, height, null);
                 g.drawImage(Assets.lvlb, x + width * 7, y, width, height, null);
                 g.drawImage(Assets.lvlb, x + width * 8, y, width, height, null);
+                g.drawImage(Assets.Store, x + width * 8, 305, 300, 250, null);
                 break;
             case 3:
                 g.drawImage(Assets.lvlc, x, y, width, height, null);
@@ -123,6 +125,7 @@ public class TileMap extends Item {
                 g.drawImage(Assets.lvlc, x + width * 6, y, width, height, null);
                 g.drawImage(Assets.lvlc, x + width * 7, y, width, height, null);
                 g.drawImage(Assets.lvlc, x + width * 8, y, width, height, null);
+                g.drawImage(Assets.Home, x + width * 8, 305, 300, 250, null);
                 break;
             default:
                 break;

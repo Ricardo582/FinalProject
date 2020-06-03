@@ -40,6 +40,9 @@ public class Level2 extends GameState {
         RW.tick();
         tileMap.tick();
         player.tick();
+        if (tileMap.getX() < -7800) {
+            gsm.setState(GameStateManager.LEVEL3INTRO);
+        }
     }
 
     @Override

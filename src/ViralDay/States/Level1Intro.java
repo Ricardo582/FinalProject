@@ -64,7 +64,6 @@ public class Level1Intro extends GameState {
 
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ENTER)) {
-            System.out.println(GameStateManager.LEVEL1);
             gsm.setState(GameStateManager.LEVEL1);
         }
     }

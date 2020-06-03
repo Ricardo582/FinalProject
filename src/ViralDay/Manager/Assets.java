@@ -14,6 +14,9 @@ public class Assets {
     public static BufferedImage menu;       // to store menu screen
     public static BufferedImage logo;       // to store logo image
     public static BufferedImage Pause;
+    public static BufferedImage Store;
+    public static BufferedImage Drugstore;
+    public static BufferedImage Home;
     
     public static BufferedImage lvla;       // to store background of level 1
     public static BufferedImage lvlb;       // to store background of level 2
@@ -100,6 +103,9 @@ public class Assets {
         menu = ImageLoader.loadImage("/images/Screen/Menu.png");
         logo = ImageLoader.loadImage("/images/Screen/logo.png");
         Pause = ImageLoader.loadImage("/images/Screen/Pausa.png");
+        Store = ImageLoader.loadImage("/images/Entity/Tienda.png");
+        Drugstore = ImageLoader.loadImage("/images/Entity/Farmacia.png");
+        Home = ImageLoader.loadImage("/images/Entity/Casa.png");
         
         lvla = ImageLoader.loadImage("/images/Screen/Bglvl1.png");
         lvlb = ImageLoader.loadImage("/images/Screen/Bglvl2.png");

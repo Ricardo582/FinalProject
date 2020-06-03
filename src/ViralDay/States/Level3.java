@@ -40,6 +40,9 @@ public class Level3 extends GameState {
         RW.tick();
         tileMap.tick();
         player.tick();
+        if (tileMap.getX() < -7800) {
+            gsm.setState(GameStateManager.WIN);
+        }
     }
 
     @Override
@@ -70,6 +73,7 @@ public class Level3 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
+            System.out.println(GameStateManager.GAMEOVER);
             gsm.setState(GameStateManager.GAMEOVER);
         }
     }
