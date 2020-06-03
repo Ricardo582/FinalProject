@@ -34,6 +34,9 @@ public class Level3 extends GameState {
         tileMap.setCurrLvl(3);
         tileMap.init();
         player = new Player(200, 500, 50, 70, this, tileMap);
+        Assets.backSound.setLooping(true);
+        Assets.backSound.play();
+        Assets.harps.stop();
     }
 
     @Override
@@ -42,6 +45,13 @@ public class Level3 extends GameState {
         RW.tick();
         tileMap.tick();
         player.tick();
+        if (tileMap.getX() < -7800) {
+            Assets.aplausos.play();
+            gsm.setState(GameStateManager.WIN);
+        }
+        if (player.getVidas() <= 0) {
+            gsm.setState(GameStateManager.GAMEOVER);
+        }
     }
 
     @Override
@@ -52,7 +62,7 @@ public class Level3 extends GameState {
         
         //Aquí se muestran las vidas del jugador en el respectivo nivel
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g.drawString("Vidas = " + player.getVidasText(), Game.getWidth() - 80, 20);
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
@@ -80,10 +90,8 @@ public class Level3 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
-            gsm.setState(GameStateManager.GAMEOVER);
-        }
-        if (player.getVidas() == 0) {
-            gsm.setState(GameStateManager.GAMEOVER);
+            System.out.println(GameStateManager.GAMEOVER);
+            //gsm.setState(GameStateManager.GAMEOVER);
         }
     }
     
@@ -95,4 +103,29 @@ public class Level3 extends GameState {
         return RW;
     }
     
+    @Override
+    public GameStateManager getGSM() {
+        return gsm;
+    }
+
+    public void Save(int slot) {
+        switch(slot) {
+            case 1:
+                RW.Save("src/saves/Save1.txt");
+                break;
+            case 2:
+                RW.Save("src/saves/Save2.txt");
+                break;
+            case 3:
+                RW.Save("src/saves/Save3.txt");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public GameState Load() {
+        return gsm.Load();
+    }
 }

@@ -29,7 +29,9 @@ public class Virus extends Item{
 
     @Override
     public void render(Graphics g) {
+        if(!colisionConPlayer){
         g.drawImage(Assets.virus, getX(), getY(), getWidth(), getHeight(), null);
+        }
     }
     
     

@@ -15,15 +15,17 @@ public abstract class GameState {
 	
     public GameState(GameStateManager gsm) {
         this.gsm = gsm;
-        this.score = 0;
     }
 
     public abstract void init();
     public abstract void tick();
     public abstract void render(Graphics g);
     public abstract void handleInput();
+    public abstract void Save(int slot);
+    public abstract GameState Load();
     public abstract ReadWrite getRW();
     public abstract TileMap getTileMap();
+    public abstract GameStateManager getGSM();
     
     public int getScore(){
         return score;

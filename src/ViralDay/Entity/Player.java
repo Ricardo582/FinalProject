@@ -58,12 +58,17 @@ public class Player extends Item {
         }
         if(KeyManager.isPressed(KeyManager.DOWN)&& !attackflag){
             if(this.getAmmo()>0){
+            Assets.spraycan.play();
             attackflag=true;
+            }
+            else{
+                Assets.noammo.play();
             }
         }
         if(attackflag){
             velTimer2 += 1;
             if(velTimer2 >= 50) {
+                Assets.spraycan.stop();
                 this.setAmmo(this.getAmmo()-1);
                 attackflag = false;
                 velTimer2 = 0;
@@ -96,6 +101,7 @@ public class Player extends Item {
             if(this.collision(enemy)) {
                 //Verificamos que sea la primera vez que choca
                 if(enemy.getColisionPlayer() == false){ //si no ha colisionado antes, entonces se resta una vida
+                    Assets.damage.play();
                     setVidas(getVidas() - 1);
                     enemy.setColisionPlayer(true);
                 }              
@@ -106,6 +112,7 @@ public class Player extends Item {
             if(this.collision(sprays)) {
                 //Verificamos que sea la primera vez que choca
                 if(sprays.getColisionPlayer() == false){ //si no ha colisionado antes, entonces se resta una vida
+                    Assets.sprays.play();
                     setAmmo(getAmmo() + 2);
                     sprays.setColisionPlayer(true);
                 }              
@@ -115,6 +122,7 @@ public class Player extends Item {
             if(this.collision(bichos)) {
                 //Verificamos que sea la primera vez que choca
                 if(bichos.getColisionPlayer() == false){ //si no ha colisionado antes, entonces se resta una vida
+                    Assets.viruses.play();
                     setVidas(getVidas() - 1);
                     bichos.setColisionPlayer(true);
                 }              
@@ -124,6 +132,7 @@ public class Player extends Item {
             if(this.isInside(bichos)&& attackflag) {
                 //Verificamos que sea la primera vez que choca
                 if(bichos.getColisionPlayer() == false){ //si no ha colisionado antes, entonces se resta una vida
+                    Assets.coins.play();
                     bichos.setColisionPlayer(true);
                     lvl.setScore(lvl.getScore()+10);
                 }              

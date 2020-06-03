@@ -41,7 +41,9 @@ public class Spray extends Item {
 
     @Override
     public void render(Graphics g) {
+        if(!colisionConPlayer){
         g.drawImage(sprayidle.getCurrentFrame(), getX(), getY(), (getWidth() * -1), getHeight(), null);
+        }
     }
     
     public void setColisionPlayer(boolean status){
