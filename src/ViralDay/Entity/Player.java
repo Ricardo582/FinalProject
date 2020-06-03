@@ -26,6 +26,7 @@ public class Player extends Item {
     private Animation run;
     private Animation jump;
     private Animation fall;
+    private Animation idle;
     private int vidas = 5;
     
 
@@ -36,6 +37,7 @@ public class Player extends Item {
         this.run = new Animation(Assets.playerRun, 150);
         this.jump = new Animation(Assets.playerJump, 150);
         this.fall = new Animation(Assets.playerFall, 150);
+        this.idle = new Animation(Assets.playerIdle, 150);
     }
 
     @Override
@@ -43,6 +45,7 @@ public class Player extends Item {
         this.run.tick();
         this.jump.tick();
         this.fall.tick();
+        this.idle.tick();
         if(KeyManager.isPressed(KeyManager.UP) && !fallFlag){
             jumpFlag = true;
             velY = 3;
@@ -88,6 +91,8 @@ public class Player extends Item {
             g.drawImage(jump.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
         } else if (fallFlag) {
             g.drawImage(fall.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
+        } else if (KeyManager.isDown(KeyManager.LEFT)){
+            g.drawImage(idle.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
         } else {
             g.drawImage(run.getCurrentFrame(), getX(), getY(), getWidth(), getHeight(), null);
         }

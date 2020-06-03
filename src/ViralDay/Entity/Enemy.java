@@ -81,7 +81,7 @@ public class Enemy extends Item {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(enemyB1.getCurrentFrame(), getX(), getY(), (getWidth() * -1), getHeight(), null);
+        g.drawImage(enemyB1.getCurrentFrame(), getX()+50, getY(), (getWidth() * -1), getHeight(), null);
     }
     
     public void setColisionPlayer(boolean status){

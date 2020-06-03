@@ -71,7 +71,7 @@ public class TileMap extends Item {
         }
         for (int i = 0; i < 10; i++) {
             int randBlock = (int) (5 + (Math.random() * 120));
-            int randX = (randBlock * 70) + 10;
+            int randX = ((randBlock) * 70) + 10;
             Enemy temp = new Enemy(randX, -100, 50, 70, this);
             enemies.add(temp);
         }
@@ -95,9 +95,8 @@ public class TileMap extends Item {
             enemigo.tick();
             if(enemigo.getX()> 0 && enemigo.getX()<1000 && enemigo.stand){
                 int rand = (int) (Math.random()*80 + 1);
-                System.out.println(rand);
                 if(rand == 72){
-                    Virus temp = new Virus(enemigo.getX(),enemigo.getY()+10,25,25);
+                    Virus temp = new Virus(enemigo.getX()+10,enemigo.getY()+20,25,25);
                     viruses.add(temp);
                 }
             }

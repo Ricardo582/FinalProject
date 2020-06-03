@@ -24,6 +24,7 @@ public class Assets {
     public static BufferedImage background3;         // to store background image
     public static BufferedImage enemy;
     public static BufferedImage virus;
+    public static BufferedImage bPrueba;
     public static BufferedImage b1;
     public static BufferedImage b2;
     public static BufferedImage b3;
@@ -79,6 +80,8 @@ public class Assets {
         go = ImageLoader.loadImage("/images/GO.jpeg");
         enemy = ImageLoader.loadImage("/images/enemy.png");
         virus = ImageLoader.loadImage("/images/Virus.png");
+        
+        bPrueba = ImageLoader.loadImage("/images/BloquePrueba.png");
         
         blockSprites = ImageLoader.loadImage("/images/block_sprites.png");
         SpriteSheet blockSS = new SpriteSheet(blockSprites);
@@ -143,41 +146,16 @@ public class Assets {
         
         for (int i = 0; i < 6; i++) {
             enemyB1[i] = enemySSB1.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyB2[i] = enemySSB2.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyB3[i] = enemySSB3.crop(i*75, 0, 75, 100);
-        }
-        
-        for (int i = 0; i < 6; i++) {
             enemyG1[i] = enemySSG1.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyG2[i] = enemySSG2.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyG3[i] = enemySSG3.crop(i*75, 0, 75, 100);
-        }
-        
-        for (int i = 0; i < 6; i++) {
             enemyO1[i] = enemySSO1.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyO2[i] = enemySSO2.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyO3[i] = enemySSO3.crop(i*75, 0, 75, 100);
-        }
-        
-        for (int i = 0; i < 6; i++) {
             enemyP1[i] = enemySSP1.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyP2[i] = enemySSP2.crop(i*75, 0, 75, 100);
-        }
-        for (int i = 0; i < 6; i++) {
             enemyP3[i] = enemySSP3.crop(i*75, 0, 75, 100);
         }
         
