@@ -10,6 +10,7 @@ import ViralDay.Entity.Enemy;
 import ViralDay.Entity.Player;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
+import ViralDay.Entity.Virus;
 import ViralDay.States.Level1;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,20 +26,25 @@ public class TileMap extends Item {
 
     private GameState lvl;
     public LinkedList<Enemy> enemies;
+    public LinkedList<Virus> viruses;
     public LinkedList<Block> blocks;
     public int currlvl;
     //public Player player = Level1.player;
+    
+    private int longitudMapa = 256;
 
     public TileMap(int x, int y, int width, int height, GameState lvl) {
         super(x, y, width, height);
         this.lvl = lvl;
         enemies = new LinkedList();
         blocks = new LinkedList();
+        viruses = new LinkedList();
 
     }
 
     public void init() {
-        int[][] tilemap = new int[10][128];
+        int[][] tilemap = new int[10][longitudMapa];
+        //int[][] tilemap = new int[10][256];
         switch (currlvl) {
             case 1:
                 tilemap = lvl.getRW().tileRead("lvl1.txt");
@@ -59,7 +65,8 @@ public class TileMap extends Item {
     public void generateMap(int[][] mat) {
         System.out.println("Generando mapa... ");
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 128; j++) {
+            for (int j = 0; j < longitudMapa; j++) {
+            //for (int j = 0; j < 256; j++) {
                 if (mat[i][j] != 0) {
                     Block curr = new Block((getX() + (j * 70)), (getY() + (i * 70)), 70, 70, mat[i][j], (j * 70), (i * 70), this);
                     blocks.add(curr);
@@ -71,6 +78,8 @@ public class TileMap extends Item {
             int randX = (randBlock * 70) + 10;
             Enemy temp = new Enemy(randX, -100, 50, 70, this);
             enemies.add(temp);
+            Virus tempVirus = new Virus(randX, -100, 50, 70, this);
+            viruses.add(tempVirus);
         }
     }
 
@@ -90,6 +99,9 @@ public class TileMap extends Item {
         }
         for (Enemy enemigo : enemies) {
             enemigo.tick();
+        }
+        for (Virus virusito : viruses) {
+            virusito.tick();
         }
     }
 

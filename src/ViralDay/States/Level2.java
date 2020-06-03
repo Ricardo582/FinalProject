@@ -79,6 +79,9 @@ public class Level2 extends GameState {
         if (KeyManager.isPressed(KeyManager.SPACE)) {
             gsm.setState(GameStateManager.LEVEL3);
         }
+        if (player.getVidas() == 0) {
+            gsm.setState(GameStateManager.GAMEOVER);
+        }
     }
     
     public TileMap getTileMap() {

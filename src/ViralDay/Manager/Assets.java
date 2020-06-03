@@ -23,6 +23,7 @@ public class Assets {
     public static BufferedImage background2;         // to store background image
     public static BufferedImage background3;         // to store background image
     public static BufferedImage enemy;
+    public static BufferedImage virus;
     public static BufferedImage b1;
     public static BufferedImage b2;
     public static BufferedImage b3;
@@ -77,6 +78,7 @@ public class Assets {
         pause = ImageLoader.loadImage("/images/Pause.jpeg");
         go = ImageLoader.loadImage("/images/GO.jpeg");
         enemy = ImageLoader.loadImage("/images/enemy.png");
+        enemy = ImageLoader.loadImage("/images/covid.png");
         
         blockSprites = ImageLoader.loadImage("/images/block_sprites.png");
         SpriteSheet blockSS = new SpriteSheet(blockSprites);

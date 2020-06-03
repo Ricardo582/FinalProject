@@ -64,7 +64,11 @@ public class Player extends Item {
                     velY = 0;
                     fallFlag = false;
                     setY(bloque.y - height);
-                } else if(!this.collision(bloque) && y < 435 ) {
+                } //else if(!this.collision(bloque) && y < /*435*/235 ) {
+            else if(y > tm.getHeight()){
+                setVidas(0);
+            }
+            else{
                     velY = 10;
                 }
             }

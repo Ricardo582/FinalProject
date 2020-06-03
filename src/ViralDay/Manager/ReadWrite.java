@@ -17,6 +17,8 @@ public class ReadWrite {
     int vidas;
     int score;
     
+    public int longitudMapa = 256;
+    
     public ReadWrite(GameState lvl){
         this.lvl = lvl;
     }
@@ -56,10 +58,12 @@ public class ReadWrite {
     
     public int[][] tileRead(String strFileName){
         int[][] mat;
-        mat = new int[10][128];
+        mat = new int[10][longitudMapa];
+        //mat = new int[10][256];
         
         for(int x = 0; x < 10; x++){
-            for(int y = 0; y < 128; y++){
+            for(int y = 0; y < longitudMapa; y++){
+            //for(int y = 0; y < 256; y++){
                 mat[x][y] = 0;
             }
         }
@@ -73,7 +77,8 @@ public class ReadWrite {
             for(int i = 0; i < 10; i++){
                 line = reader.readLine();
                 datos = line.split("/");
-                for(int j = 0; j < 128; j++){
+                for(int j = 0; j < longitudMapa; j++){
+                //for(int j = 0; j < 256; j++){
                     mat[i][j] = Integer.parseInt(datos[j]);
                     System.out.print(mat[i][j]);
                 }
