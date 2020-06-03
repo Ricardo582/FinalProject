@@ -61,13 +61,14 @@ public class Player extends Item {
         }
         for (Block bloque : tm.blocks) {
             if(this.collision(bloque)) {
-                    velY = 0;
-                    fallFlag = false;
-                    setY(bloque.y - height);
-                } else if(!this.collision(bloque) && y < 435 ) {
-                    velY = 10;
-                }
+                velY = 0;
+                fallFlag = false;
+                setY(bloque.y - height);
+            } 
+            else{
+                velY = 10;
             }
+        }
         
         //Aquí se hace la lógica para restar vidas cuando colisione con un enemigo
         for (Enemy enemy : tm.enemies) {

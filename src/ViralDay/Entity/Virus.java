@@ -13,14 +13,16 @@ import java.awt.Graphics;
  * @author hgm
  */
 public class Virus extends Item{
-
+    public int velX;
+    
     public Virus(int x, int y, int width, int height) {
         super(x, y, width, height);
+        this.velX = 5;
     }
 
     @Override
     public void tick() {
-        setX(getX()-5);
+        setX(getX()-velX);
     }
 
     @Override

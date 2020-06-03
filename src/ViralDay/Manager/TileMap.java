@@ -83,7 +83,7 @@ public class TileMap extends Item {
             setX(x + 4);
         }
         if (KeyManager.isDown(KeyManager.RIGHT)) {
-            setX(x - 5);
+            setX(x - 4);
         }
         
         setX(x - 4);
@@ -105,12 +105,12 @@ public class TileMap extends Item {
         
         for (Virus bicho: viruses){
             if (KeyManager.isDown(KeyManager.RIGHT)) {
-                bicho.tick();
-                bicho.tick();
+                bicho.velX = 15;
             }
             else{
-                bicho.tick();
+                bicho.velX = 5;
             }
+            bicho.tick();
         }
     }
 

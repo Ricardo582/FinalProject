@@ -38,7 +38,6 @@ public class Enemy extends Item {
         this.tm = tm;
         this.initX = x;
         this.initY = y;
-        velY = 5;
         this.enemyB1 = new Animation(Assets.enemyB1, 150);
         this.enemyB2 = new Animation(Assets.enemyB2, 150);
         this.enemyB3 = new Animation(Assets.enemyB3, 150);
@@ -51,6 +50,7 @@ public class Enemy extends Item {
         this.enemyP1 = new Animation(Assets.enemyP1, 150);
         this.enemyP2 = new Animation(Assets.enemyP2, 150);
         this.enemyP3 = new Animation(Assets.enemyP3, 150);
+        velY = 5;
         colisionConPlayer = false;
         stand = false;
     }
