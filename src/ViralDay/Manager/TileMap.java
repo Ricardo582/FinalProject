@@ -38,13 +38,13 @@ public class TileMap extends Item {
         int[][] tilemap = new int[10][128];
         switch (currlvl) {
             case 1:
-                tilemap = lvl.getRW().tileRead("lvl1.txt");
+                tilemap = lvl.getRW().tileRead("src/levels/lvl1.txt");
                 break;
             case 2:
-                tilemap = lvl.getRW().tileRead("lvl2.txt");
+                tilemap = lvl.getRW().tileRead("src/levels/lvl2.txt");
                 break;
             case 3:
-                tilemap = lvl.getRW().tileRead("lvl3.txt");
+                tilemap = lvl.getRW().tileRead("src/levels/lvl3.txt");
                 break;
             default:
                 break;
@@ -66,7 +66,7 @@ public class TileMap extends Item {
         for (int i = 0; i < 10; i++) {
             int randBlock = (int) (5 + (Math.random() * 120));
             int randX = (randBlock * 70) + 10;
-            Enemy temp = new Enemy(randX, -100, 50, 70, this);
+            Enemy temp = new Enemy(randX, -100, 50, 70, (int) ((Math.random() * 11) + 1), this);
             enemies.add(temp);
         }
     }
@@ -79,8 +79,6 @@ public class TileMap extends Item {
         if (KeyManager.isDown(KeyManager.RIGHT)) {
             setX(x - 10);
         }
-        
-        setX(x - 4);
 
         for (Block block : blocks) {
             block.tick();

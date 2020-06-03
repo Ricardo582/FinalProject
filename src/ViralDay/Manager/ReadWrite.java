@@ -38,8 +38,7 @@ public class ReadWrite {
     public void Load(String strFileName){
         try{
             System.out.println("Loading...");
-            FileReader file = new FileReader(strFileName);
-            BufferedReader reader = new BufferedReader(file);
+            BufferedReader reader = new BufferedReader(new FileReader(strFileName));
             String line;
             String datos[];
             line = reader.readLine();

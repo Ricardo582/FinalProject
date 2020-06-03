@@ -70,7 +70,7 @@ public class GameOverState extends GameState {
 		
 		Assets.drawString(g, "press any key", 12, 110);
 		*/
-                g.drawImage(Assets.go, 0, 0, Game.getWidth(), Game.getHeight(), null);
+                //g.drawImage(Assets.go, 0, 0, Game.getWidth(), Game.getHeight(), null);
 	}
 	
 	public void handleInput() {

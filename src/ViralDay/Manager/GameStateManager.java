@@ -8,6 +8,7 @@ import ViralDay.States.Level2;
 import ViralDay.States.Level3;
 import ViralDay.States.LoadState;
 import ViralDay.States.MenuState;
+import ViralDay.States.OptionsState;
 import ViralDay.States.PauseState;
 import java.awt.Graphics;
 
@@ -24,7 +25,7 @@ public class GameStateManager {
     private int currentState;
     private int previousState;
 
-    public static final int NUM_STATES = 7;
+    public static final int NUM_STATES = 9;
     public static final int INTRO = 0;
     public static final int MENU = 1;
     public static final int LOAD = 2;
@@ -32,6 +33,8 @@ public class GameStateManager {
     public static final int LEVEL2 = 4;
     public static final int LEVEL3 = 5;
     public static final int GAMEOVER = 6;
+    public static final int SAVE = 7;
+    public static final int OPTIONS = 8;
 
     public GameStateManager() {
         paused = false;
@@ -45,27 +48,41 @@ public class GameStateManager {
         previousState = currentState;
         unloadState(previousState);
         currentState = state;
-        if (state == INTRO) {
-            gameStates[state] = new IntroState(this);
-            gameStates[state].init();
-        } else if (state == MENU) {
-            gameStates[state] = new MenuState(this);
-            gameStates[state].init();
-        } else if (state == LOAD) {
-            gameStates[state] = new LoadState(this);
-            gameStates[state].init();
-        } else if (state == LEVEL1) {
-            gameStates[state] = new Level1(this);
-            gameStates[state].init();
-        } else if (state == LEVEL2) {
-            gameStates[state] = new Level2(this);
-            gameStates[state].init();
-        } else if (state == LEVEL3) {
-            gameStates[state] = new Level3(this);
-            gameStates[state].init();
-        } else if (state == GAMEOVER) {
-            gameStates[state] = new GameOverState(this);
-            gameStates[state].init();
+        switch (state) {
+            case INTRO:
+                gameStates[state] = new IntroState(this);
+                gameStates[state].init();
+                break;
+            case MENU:
+                gameStates[state] = new MenuState(this);
+                gameStates[state].init();
+                break;
+            case LOAD:
+                gameStates[state] = new LoadState(this);
+                gameStates[state].init();
+                break;
+            case LEVEL1:
+                gameStates[state] = new Level1(this);
+                gameStates[state].init();
+                break;
+            case LEVEL2:
+                gameStates[state] = new Level2(this);
+                gameStates[state].init();
+                break;
+            case LEVEL3:
+                gameStates[state] = new Level3(this);
+                gameStates[state].init();
+                break;
+            case GAMEOVER:
+                gameStates[state] = new GameOverState(this);
+                gameStates[state].init();
+                break;
+            case OPTIONS:
+                gameStates[state] = new OptionsState(this);
+                gameStates[state].init();
+                break;
+            default:
+                break;
         }
     }
 
@@ -75,6 +92,7 @@ public class GameStateManager {
 
     public void setPaused(boolean b) {
         paused = b;
+        pauseState.init();
     }
 
     public void tick() {

@@ -14,11 +14,6 @@ import java.awt.Graphics;
  */
 public class MenuState extends GameState {
     private int currentOption = 0;
-    private final String[] options = {
-        "JUGAR",
-        "CARGAR",
-        "SALIR"
-    };
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
@@ -35,15 +30,22 @@ public class MenuState extends GameState {
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.menu, 0, 0, Game.getWidth(), Game.getHeight(), null);
+        g.drawImage(Assets.Jugar[0], 225, 200, 230, 91, null);
+        g.drawImage(Assets.Cargar[0], 225, 295, 230, 91, null);
+        g.drawImage(Assets.Opciones[0], 225, 390, 230, 91, null);
+        g.drawImage(Assets.Salir[0], 225, 485, 230, 91, null);
         switch (currentOption) {
             case 0:
-                g.drawImage(Assets.ball, 165, 270, 50, 50, null);
+                g.drawImage(Assets.Jugar[1], 225, 200, 230, 91, null);
                 break;
             case 1:
-                g.drawImage(Assets.ball, 165, 370, 50, 50, null);
+                g.drawImage(Assets.Cargar[1], 225, 295, 230, 91, null);
                 break;
             case 2:
-                g.drawImage(Assets.ball, 165, 470, 50, 50, null);
+                g.drawImage(Assets.Opciones[1], 225, 390, 230, 91, null);
+                break;
+            case 3:
+                g.drawImage(Assets.Salir[1], 225, 485, 230, 91, null);
                 break;
             default:
                 break;
@@ -52,7 +54,7 @@ public class MenuState extends GameState {
 
     @Override
     public void handleInput() {
-        if (KeyManager.isPressed(KeyManager.DOWN) && currentOption < options.length - 1) {
+        if (KeyManager.isPressed(KeyManager.DOWN) && currentOption < 3) {
             currentOption++;
         }
         if (KeyManager.isPressed(KeyManager.UP) && currentOption > 0) {
@@ -69,9 +71,14 @@ public class MenuState extends GameState {
                 gsm.setState(GameStateManager.LEVEL1);
                 break;
             case 1:
-                //gsm.setState(GameStateManager.LoadState);
+                gsm.setState(GameStateManager.LOAD);
+                break;
             case 2:
+                gsm.setState(GameStateManager.OPTIONS);
+                break;
+            case 3:
                 System.exit(0);
+                break;
             default:
                 break;
         }
