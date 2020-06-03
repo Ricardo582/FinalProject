@@ -7,6 +7,7 @@ package ViralDay.Manager;
 
 import ViralDay.Entity.Block;
 import ViralDay.Entity.Enemy;
+import ViralDay.Entity.Virus;
 import ViralDay.Entity.Player;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
@@ -26,6 +27,7 @@ public class TileMap extends Item {
     private GameState lvl;
     public LinkedList<Enemy> enemies;
     public LinkedList<Block> blocks;
+    public LinkedList<Virus> viruses;
     public int currlvl;
     //public Player player = Level1.player;
 
@@ -34,6 +36,7 @@ public class TileMap extends Item {
         this.lvl = lvl;
         enemies = new LinkedList();
         blocks = new LinkedList();
+        viruses = new LinkedList();
 
     }
 
@@ -77,10 +80,10 @@ public class TileMap extends Item {
     @Override
     public void tick() {
         if (KeyManager.isDown(KeyManager.LEFT)) {
-            setX(x + 10);
+            setX(x + 4);
         }
         if (KeyManager.isDown(KeyManager.RIGHT)) {
-            setX(x - 10);
+            setX(x - 5);
         }
         
         setX(x - 4);
@@ -90,6 +93,24 @@ public class TileMap extends Item {
         }
         for (Enemy enemigo : enemies) {
             enemigo.tick();
+            if(enemigo.getX()> 0 && enemigo.getX()<1000 && enemigo.stand){
+                int rand = (int) (Math.random()*80 + 1);
+                System.out.println(rand);
+                if(rand == 72){
+                    Virus temp = new Virus(enemigo.getX(),enemigo.getY()+10,25,25);
+                    viruses.add(temp);
+                }
+            }
+        }
+        
+        for (Virus bicho: viruses){
+            if (KeyManager.isDown(KeyManager.RIGHT)) {
+                bicho.tick();
+                bicho.tick();
+            }
+            else{
+                bicho.tick();
+            }
         }
     }
 
@@ -138,6 +159,9 @@ public class TileMap extends Item {
         }
         for (Enemy enemigo : enemies) {
             enemigo.render(g);
+        }
+        for (Virus bicho : viruses) {
+            bicho.render(g);
         }
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);

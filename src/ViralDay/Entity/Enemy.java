@@ -31,13 +31,14 @@ public class Enemy extends Item {
     private Animation enemyP2;
     private Animation enemyP3;
     private boolean colisionConPlayer;
+    public boolean stand;
 
     public Enemy(int x, int y, int width, int height, TileMap tm) {
         super(x, y, width, height);
         this.tm = tm;
         this.initX = x;
         this.initY = y;
-        velY = 6;
+        velY = 5;
         this.enemyB1 = new Animation(Assets.enemyB1, 150);
         this.enemyB2 = new Animation(Assets.enemyB2, 150);
         this.enemyB3 = new Animation(Assets.enemyB3, 150);
@@ -51,6 +52,7 @@ public class Enemy extends Item {
         this.enemyP2 = new Animation(Assets.enemyP2, 150);
         this.enemyP3 = new Animation(Assets.enemyP3, 150);
         colisionConPlayer = false;
+        stand = false;
     }
 
     @Override
@@ -72,6 +74,7 @@ public class Enemy extends Item {
         for (Block bloque : tm.blocks) {
             if(this.collision(bloque)) {
                 velY = 0;
+                stand = true;
             }
         }
     }
