@@ -17,15 +17,20 @@ import java.awt.Graphics;
 public class Enemy extends Item {
 
     private TileMap tm;
-    private int initX, initY, velY;
+    private int initX, initY, velY, color;
     private Animation enemy;
+    private boolean colisionConPlayer;
+    public boolean stand;
 
     public Enemy(int x, int y, int width, int height, int color, TileMap tm) {
         super(x, y, width, height);
         this.tm = tm;
         this.initX = x;
         this.initY = y;
+        this.color = color;
         velY = 6;
+        colisionConPlayer = false;
+        stand = false;
         switch (color) {
             case 1:
                 this.enemy = new Animation(Assets.enemyB1, 150);
@@ -76,6 +81,7 @@ public class Enemy extends Item {
         for (Block bloque : tm.blocks) {
             if (this.collision(bloque)) {
                 velY = 0;
+                stand = true;
             }
         }
     }
@@ -85,4 +91,19 @@ public class Enemy extends Item {
         g.drawImage(enemy.getCurrentFrame(), getX(), getY(), (getWidth() * -1), getHeight(), null);
     }
 
+    public int getColor() {
+        return this.color;
+    }
+    
+    public void setColor(int color) {
+        this.color = color;
+    }
+    
+    public void setColisionPlayer(boolean status){
+        colisionConPlayer = status;
+    }
+    
+    public boolean getColisionPlayer(){
+        return colisionConPlayer;
+    }
 }

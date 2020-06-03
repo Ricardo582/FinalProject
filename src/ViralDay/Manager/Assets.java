@@ -17,7 +17,8 @@ public class Assets {
     public static BufferedImage Store;
     public static BufferedImage Drugstore;
     public static BufferedImage Home;
-    
+    public static BufferedImage virus;
+
     public static BufferedImage lvla;       // to store background of level 1
     public static BufferedImage lvlb;       // to store background of level 2
     public static BufferedImage lvlc;       // to store background of level 3
@@ -25,7 +26,7 @@ public class Assets {
     public static BufferedImage backPause;
     public static BufferedImage LS;
     public static BufferedImage Bar[];      // to store the sprites of bar
-    
+
     // To store buttons images
     public static BufferedImage Cargar[];
     public static BufferedImage Continuar[];
@@ -36,11 +37,11 @@ public class Assets {
     public static BufferedImage Partida2[];
     public static BufferedImage Partida3[];
     public static BufferedImage Salir[];
-    public static BufferedImage Vacio[]; 
-    public static BufferedImage Regresar[]; 
+    public static BufferedImage Vacio[];
+    public static BufferedImage Regresar[];
     public static BufferedImage Efects[];
     public static BufferedImage Music[];
-    
+
     // To store the history animations of:
     //  LEVEL 1
     //  LEVEL 2
@@ -52,6 +53,9 @@ public class Assets {
     public static BufferedImage Lvl3[];
     public static BufferedImage Win[];
     public static BufferedImage GO[];
+
+    public static BufferedImage spraySprites;
+    public static BufferedImage spSprites[];
 
     public static BufferedImage liveSprites;
     public static BufferedImage liveFrames[];
@@ -106,92 +110,93 @@ public class Assets {
         Store = ImageLoader.loadImage("/images/Entity/Tienda.png");
         Drugstore = ImageLoader.loadImage("/images/Entity/Farmacia.png");
         Home = ImageLoader.loadImage("/images/Entity/Casa.png");
-        
+        virus = ImageLoader.loadImage("/images/Entity/Virus.png");
+
         lvla = ImageLoader.loadImage("/images/Screen/Bglvl1.png");
         lvlb = ImageLoader.loadImage("/images/Screen/Bglvl2.png");
         lvlc = ImageLoader.loadImage("/images/Screen/Bglvl3.png");
         back = ImageLoader.loadImage("/images/Screen/back.png");
         backPause = ImageLoader.loadImage("/images/Screen/backPause.png");
         LS = ImageLoader.loadImage("/images/Screen/Cargar.png");
-        
+
         Bar = new BufferedImage[5];
         Bar[0] = ImageLoader.loadImage("/images/Buttons/Volume0.png");
         Bar[1] = ImageLoader.loadImage("/images/Buttons/Volume25.png");
         Bar[2] = ImageLoader.loadImage("/images/Buttons/Volume50.png");
         Bar[3] = ImageLoader.loadImage("/images/Buttons/Volume75.png");
         Bar[4] = ImageLoader.loadImage("/images/Buttons/Volume100.png");
-        
+
         Cargar = new BufferedImage[2];
         Cargar[0] = ImageLoader.loadImage("/images/Buttons/Cargar.png");
         Cargar[1] = ImageLoader.loadImage("/images/Buttons/CargarP.png");
-        
+
         Continuar = new BufferedImage[2];
         Continuar[0] = ImageLoader.loadImage("/images/Buttons/Continuar.png");
         Continuar[1] = ImageLoader.loadImage("/images/Buttons/ContinuarP.png");
-        
+
         Guardar = new BufferedImage[2];
         Guardar[0] = ImageLoader.loadImage("/images/Buttons/Guardar.png");
         Guardar[1] = ImageLoader.loadImage("/images/Buttons/GuardarP.png");
-        
+
         Jugar = new BufferedImage[2];
         Jugar[0] = ImageLoader.loadImage("/images/Buttons/Jugar.png");
         Jugar[1] = ImageLoader.loadImage("/images/Buttons/JugarP.png");
-        
+
         Opciones = new BufferedImage[2];
         Opciones[0] = ImageLoader.loadImage("/images/Buttons/Opciones.png");
         Opciones[1] = ImageLoader.loadImage("/images/Buttons/OpcionesP.png");
-        
+
         Partida1 = new BufferedImage[2];
         Partida1[0] = ImageLoader.loadImage("/images/Buttons/Partida1.png");
         Partida1[1] = ImageLoader.loadImage("/images/Buttons/Partida1P.png");
-        
+
         Partida2 = new BufferedImage[2];
         Partida2[0] = ImageLoader.loadImage("/images/Buttons/Partida2.png");
         Partida2[1] = ImageLoader.loadImage("/images/Buttons/Partida2P.png");
-        
+
         Partida3 = new BufferedImage[2];
         Partida3[0] = ImageLoader.loadImage("/images/Buttons/Partida3.png");
         Partida3[1] = ImageLoader.loadImage("/images/Buttons/Partida3P.png");
-        
+
         Salir = new BufferedImage[2];
         Salir[0] = ImageLoader.loadImage("/images/Buttons/Salir.png");
         Salir[1] = ImageLoader.loadImage("/images/Buttons/SalirP.png");
-        
+
         Vacio = new BufferedImage[2];
         Vacio[0] = ImageLoader.loadImage("/images/Buttons/Vacio.png");
         Vacio[1] = ImageLoader.loadImage("/images/Buttons/VacioP.png");
-        
+
         Regresar = new BufferedImage[2];
         Regresar[0] = ImageLoader.loadImage("/images/Buttons/Regresar.png");
         Regresar[1] = ImageLoader.loadImage("/images/Buttons/RegresarP.png");
-        
+
         Efects = new BufferedImage[2];
         Efects[0] = ImageLoader.loadImage("/images/Screen/Efectos.png");
         Efects[1] = ImageLoader.loadImage("/images/Screen/EfectosP.png");
-        
+
         Music = new BufferedImage[2];
         Music[0] = ImageLoader.loadImage("/images/Screen/Musica.png");
         Music[1] = ImageLoader.loadImage("/images/Screen/MusicaP.png");
-        
+
         Lvl1 = new BufferedImage[4];
         Lvl1[0] = ImageLoader.loadImage("/images/Screen/1a.png");
         Lvl1[1] = ImageLoader.loadImage("/images/Screen/1b.png");
         Lvl1[2] = ImageLoader.loadImage("/images/Screen/1c.png");
         Lvl1[3] = ImageLoader.loadImage("/images/Screen/1d.png");
-        
+
         Lvl2 = new BufferedImage[2];
         Lvl2[0] = ImageLoader.loadImage("/images/Screen/2a.png");
         Lvl2[1] = ImageLoader.loadImage("/images/Screen/2b.png");
-        
+
         Lvl3 = new BufferedImage[2];
         Lvl3[0] = ImageLoader.loadImage("/images/Screen/3a.png");
         Lvl3[1] = ImageLoader.loadImage("/images/Screen/3b.png");
-        
+
         Win = new BufferedImage[3];
         Win[0] = ImageLoader.loadImage("/images/Screen/4a.png");
         Win[1] = ImageLoader.loadImage("/images/Screen/4b.png");
         Win[2] = ImageLoader.loadImage("/images/Screen/4c.png");
-        
+
         GO = new BufferedImage[4];
         GO[0] = ImageLoader.loadImage("/images/Screen/GO1.png");
         GO[1] = ImageLoader.loadImage("/images/Screen/GO2.png");
@@ -215,19 +220,23 @@ public class Assets {
         enemyP1Sprites = ImageLoader.loadImage("/images/Entity/EnemyP1.png");
         enemyP2Sprites = ImageLoader.loadImage("/images/Entity/EnemyP2.png");
         enemyP3Sprites = ImageLoader.loadImage("/images/Entity/EnemyP3.png");
+        spraySprites = ImageLoader.loadImage("/images/Entity/cans.png");
         liveSprites = ImageLoader.loadImage("/images/Entity/livesSS.png");
 
         // creating array of images before animations
+        SpriteSheet spraySS = new SpriteSheet(spraySprites);
+        spSprites = new BufferedImage[6];
+
         SpriteSheet liveSS = new SpriteSheet(liveSprites);
         liveFrames = new BufferedImage[8];
-        
+
         SpriteSheet playerSS = new SpriteSheet(playerSprites);
         playerJump = new BufferedImage[1];
         playerFall = new BufferedImage[1];
         playerIdle = new BufferedImage[3];
         playerAttack = new BufferedImage[3];
         playerRun = new BufferedImage[5];
-        
+
         SpriteSheet enemySSB1 = new SpriteSheet(enemyB1Sprites);
         SpriteSheet enemySSB2 = new SpriteSheet(enemyB2Sprites);
         SpriteSheet enemySSB3 = new SpriteSheet(enemyB3Sprites);
@@ -252,12 +261,12 @@ public class Assets {
         enemyP1 = new BufferedImage[6];
         enemyP2 = new BufferedImage[6];
         enemyP3 = new BufferedImage[6];
-        
+
         // croping the pictures from the sheet into the array
         for (int i = 0; i < 8; i++) {
             liveFrames[i] = liveSS.crop(i * 493, 0, 493, 443);
         }
-        
+
         for (int i = 0; i < 3; i++) {
             playerIdle[i] = playerSS.crop(i * 74, 119, 74, 119);
         }
@@ -283,6 +292,7 @@ public class Assets {
             enemyP1[i] = enemySSP1.crop(i * 75, 0, 75, 100);
             enemyP2[i] = enemySSP2.crop(i * 75, 0, 75, 100);
             enemyP3[i] = enemySSP3.crop(i * 75, 0, 75, 100);
+            spSprites[i] = spraySS.crop(i * 96, 0, 96, 174);
         }
 
         b1 = blockSS.crop(0, 0, 100, 100);

@@ -7,6 +7,8 @@ import ViralDay.Manager.KeyManager;
 import ViralDay.Manager.ReadWrite;
 import ViralDay.Manager.GameStateManager;
 import ViralDay.Entity.Player;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 /**
@@ -43,6 +45,9 @@ public class Level3 extends GameState {
         if (tileMap.getX() < -7800) {
             gsm.setState(GameStateManager.WIN);
         }
+        if (player.getVidas() == 0) {
+            gsm.setState(GameStateManager.GAMEOVER);
+        }
     }
 
     @Override
@@ -50,6 +55,14 @@ public class Level3 extends GameState {
         g.drawImage(Assets.back, 0, 0, Game.getWidth(), Game.getHeight(), null);
         tileMap.render(g);
         player.render(g);
+        
+        //Aquí se muestran las vidas del jugador en el respectivo nivel
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Vidas = " + player.getVidasText(), Game.getWidth() - 80, 20);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setColor(Color.black);
+        g.drawString("Ammo = " + player.getAmmoText(), Game.getWidth() - 160, 20);
     }
 
     @Override
@@ -86,4 +99,29 @@ public class Level3 extends GameState {
         return RW;
     }
     
+    @Override
+    public GameStateManager getGSM() {
+        return gsm;
+    }
+
+    public void Save(int slot) {
+        switch(slot) {
+            case 1:
+                RW.Save("src/saves/Save1.txt");
+                break;
+            case 2:
+                RW.Save("src/saves/Save2.txt");
+                break;
+            case 3:
+                RW.Save("src/saves/Save3.txt");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public GameState Load() {
+        return gsm.Load();
+    }
 }

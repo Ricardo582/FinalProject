@@ -20,6 +20,7 @@ public class PauseState extends GameState {
     private int currentOptionSave = 0;
     private boolean Save = false;
     private boolean Load = false;
+    private ReadWrite RW;
 
     public PauseState(GameStateManager gsm) {
         super(gsm);
@@ -27,10 +28,10 @@ public class PauseState extends GameState {
 
     public void init() {
         timer = 0;
+        RW = new ReadWrite(this);
     }
 
     public void tick() {
-        System.out.println(currentOptionSave);
         timer++;
         handleInput();
     }
@@ -151,12 +152,15 @@ public class PauseState extends GameState {
         switch (currentOptionSave) {
             case 0:
                 // GUARDAR SLOT 1
+                gsm.Save(1);
                 break;
             case 1:
                 // GUARDAR SLOT 2
+                gsm.Save(2);
                 break;
             case 2:
                 // GUARDAR SLOT 3
+                gsm.Save(3);
                 break;
             case 3:
                 Save = false;
@@ -170,13 +174,16 @@ public class PauseState extends GameState {
     private void selectOptionLoad() {
         switch (currentOptionSave) {
             case 0:
-                // CARGAR SLOT 1
+                //CARGAR SLOT 1
+                RW.Load("src/saves/Save1.txt");
                 break;
             case 1:
-                // CARGAR SLOT 2
+                //CARGAR SLOT 2
+                RW.Load("src/saves/Save2.txt");
                 break;
             case 2:
-                // CARGAR SLOT 3
+                //CARGAR SLOT 3
+                RW.Load("src/saves/Save3.txt");
                 break;
             case 3:
                 Load = false;
@@ -196,5 +203,19 @@ public class PauseState extends GameState {
     public TileMap getTileMap() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public GameStateManager getGSM() {
+        return gsm;
+    }
 
+    @Override
+    public void Save(int slot) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public GameState Load() {
+        return gsm.Load();
+    }
 }

@@ -118,4 +118,12 @@ public class GameStateManager {
             gameStates[currentState].render(g);
         }
     }
+    
+    public void Save(int slot) {
+        gameStates[currentState].Save(slot);
+    }
+    
+    public GameState Load() {
+        return gameStates[currentState].Load();
+    }
 }

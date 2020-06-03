@@ -14,13 +14,16 @@ import java.awt.Graphics;
  */
 public class LoadState extends GameState {
     private int currentOption = 0;
+    private ReadWrite RW;
     
     public LoadState(GameStateManager gsm) {
         super(gsm);
     }
     
     @Override
-    public void init() {}
+    public void init() {
+    RW = new ReadWrite(this);
+    }
 
     @Override
     public void tick() {
@@ -72,12 +75,15 @@ public class LoadState extends GameState {
         switch (currentOption) {
             case 0:
                 //CARGAR SLOT 1
+                RW.Load("src/saves/Save1.txt");
                 break;
             case 1:
                 //CARGAR SLOT 2
+                RW.Load("src/saves/Save2.txt");
                 break;
             case 2:
                 //CARGAR SLOT 3
+                RW.Load("src/saves/Save3.txt");
                 break;
             case 3:
                 gsm.setState(GameStateManager.MENU);
@@ -97,4 +103,18 @@ public class LoadState extends GameState {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public GameStateManager getGSM() {
+        return gsm;
+    }
+
+    @Override
+    public void Save(int slot) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public GameState Load() {
+        return gsm.Load();
+    }
 }

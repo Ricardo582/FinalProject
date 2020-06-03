@@ -9,6 +9,8 @@ import ViralDay.Entity.Block;
 import ViralDay.Entity.Enemy;
 import ViralDay.States.GameState;
 import ViralDay.Entity.Item;
+import ViralDay.Entity.Spray;
+import ViralDay.Entity.Virus;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -22,8 +24,10 @@ import java.util.LinkedList;
 public class TileMap extends Item {
 
     private GameState lvl;
-    private LinkedList<Enemy> enemies;
+    public LinkedList<Enemy> enemies;
     public LinkedList<Block> blocks;
+    public LinkedList<Spray> sprays;
+    public LinkedList<Virus> viruses;
     public int currlvl;
 
     public TileMap(int x, int y, int width, int height, GameState lvl) {
@@ -31,6 +35,8 @@ public class TileMap extends Item {
         this.lvl = lvl;
         enemies = new LinkedList();
         blocks = new LinkedList();
+        viruses = new LinkedList();
+        sprays = new LinkedList();
 
     }
 
@@ -69,22 +75,50 @@ public class TileMap extends Item {
             Enemy temp = new Enemy(randX, -100, 50, 70, (int) ((Math.random() * 11) + 1), this);
             enemies.add(temp);
         }
+        for (int i = 0; i < 3; i++) {
+            int randBlock = (int) (5 + (Math.random() * 120));
+            int randX = (randBlock * 70) + 25;
+            Spray temp = new Spray(randX, -100, 20 , 35, this);
+            sprays.add(temp);
+        }
     }
 
     @Override
     public void tick() {
         if (KeyManager.isDown(KeyManager.LEFT)) {
-            setX(x + 10);
+            setX(x + 4);
         }
         if (KeyManager.isDown(KeyManager.RIGHT)) {
-            setX(x - 10);
+            setX(x - 4);
         }
+        
+        setX(x - 4);
 
         for (Block block : blocks) {
             block.tick();
         }
         for (Enemy enemigo : enemies) {
             enemigo.tick();
+            if(enemigo.getX()> 0 && enemigo.getX()<1000 && enemigo.stand){
+                int rand = (int) (Math.random()*80 + 1);
+                if(rand == 72){
+                    Virus temp = new Virus(enemigo.getX()+10,enemigo.getY()+20,25,25);
+                    viruses.add(temp);
+                }
+            }
+        }
+        for (Virus bicho: viruses){
+            if (KeyManager.isDown(KeyManager.RIGHT)) {
+                bicho.velX = 15;
+            }
+            else{
+                bicho.velX = 5;
+            }
+            bicho.tick();
+        }
+        
+        for (Spray sprays : sprays) {
+            sprays.tick();
         }
     }
 
@@ -137,6 +171,13 @@ public class TileMap extends Item {
         for (Enemy enemigo : enemies) {
             enemigo.render(g);
         }
+        for (Spray sprays : sprays) {
+            sprays.render(g);
+        }
+        for (Virus bicho : viruses) {
+            bicho.render(g);
+        }
+        /*
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
         g.drawString("Puntos: 0", Game.getWidth() - 60, 40);
@@ -163,9 +204,31 @@ public class TileMap extends Item {
         g.drawString("Pausa: ESC", 20, 120);
         g.setFont(new Font("Arial", Font.BOLD, 12));
         g.setColor(Color.black);
+        */
+        g.setColor(Color.black);
+        g.drawString("Puntos = " + lvl.getScore(), Game.getWidth() - 160, 40);
+        g.setFont(new Font("Arial", Font.BOLD, 12));
     }
 
     public void setCurrLvl(int curr) {
         currlvl = curr;
+    }
+    
+    public LinkedList getEnemies() {
+        return enemies;
+    }
+    
+    public int getCurrLvlState() {
+        switch(currlvl) {
+            case 1:
+                return 5;
+            case 2:
+                return 7;
+            case 3:
+                return 9;
+            default:
+                break;
+        }
+        return 0;
     }
 }

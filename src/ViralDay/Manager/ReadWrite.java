@@ -1,11 +1,13 @@
 package ViralDay.Manager;
 
 import ViralDay.States.GameState;
+import ViralDay.Entity.Enemy;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
+import java.util.LinkedList;
 
 /**
  *
@@ -14,25 +16,49 @@ import java.io.BufferedReader;
 public class ReadWrite {
     
     GameState lvl;
-    int vidas;
-    int score;
-    
+    private int vidas, score, level;
+    private int enemyX, enemyY, enemyColor;
+    private int tmX, tmY;
+    private int virusX, virusY;
     public ReadWrite(GameState lvl){
         this.lvl = lvl;
     }
     
     public void Save(String strFileName){
-        /*try{
+        try{
             System.out.println("Saving...");
             PrintWriter writer = new PrintWriter(new FileWriter(strFileName));
-            vidas = game.getLives();
-            score = game.getScore();
-            writer.println("" + vidas + "/" + score);
+            
+            //vidas = lvl.getLives();
+            //score = lvl.getScore();
+            level = lvl.getTileMap().getCurrLvlState();
+            tmX = lvl.getTileMap().getX();
+            tmY = lvl.getTileMap().getX();
+            writer.println(level);
+            writer.println(vidas + "/" + score);
+            writer.println(tmX + "/" + tmY);
+            
+            LinkedList<Enemy> enemies = lvl.getTileMap().getEnemies();
+            for(int i=0; i<enemies.size(); i++){
+                enemyX = enemies.get(i).getX();
+                enemyY = enemies.get(i).getY();
+                enemyColor = enemies.get(i).getColor();
+                writer.println(enemyX + "/" + enemyY + "/" + enemyColor);
+            }
+            writer.println("eof");
+            /*
+            LinkedList<Virus> viruses = lvl.getTileMap().getViruses();
+            for(int i=0; i<viruses.size(); i++){
+                virusX = viruses.get(i).getX();
+                virusY = viruses.get(i).getY();
+                writer.println("" + virusX + "/" + virusY);
+            }
+            writer.println("eof");*/
             writer.close();
         }
         catch(IOException ioe){
             System.out.println("File Not fund Call 911");
-        }*/
+        }
     }
     
     public void Load(String strFileName){
@@ -41,11 +67,27 @@ public class ReadWrite {
             BufferedReader reader = new BufferedReader(new FileReader(strFileName));
             String line;
             String datos[];
+            line = reader.readLine(); 
+            lvl.getGSM().setState(Integer.parseInt(line));
+            lvl = lvl.Load();
+            
             line = reader.readLine();
-            datos = line.split("/");
+            //datos = line.split("/");
             //game.setLives(Integer.parseInt(datos[0]));
             //game.setScore(Integer.parseInt(datos[1]));
-            //System.out.println("Se leyo vidas = " + vidas + " y score = " + score);
+            line = reader.readLine();
+            datos = line.split("/");
+            lvl.getTileMap().setX(Integer.parseInt(datos[0]));
+            //lvl.getTileMap().setY(Integer.parseInt(datos[1]));
+            
+            LinkedList<Enemy> enemies = lvl.getTileMap().getEnemies();
+            for(int i=0; i<enemies.size(); i++){
+                line = reader.readLine();
+                datos = line.split("/");
+                enemies.get(i).setX(Integer.parseInt(datos[0]));
+                enemies.get(i).setY(Integer.parseInt(datos[1]));
+                enemies.get(i).setColor(Integer.parseInt(datos[2]));
+            }
             reader.close();
         }
         catch(IOException e){

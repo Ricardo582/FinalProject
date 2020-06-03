@@ -115,9 +115,9 @@ public abstract class Item {
     }
     
     public boolean isInside(Object o) {
-        boolean bStatus = true;        // assuming is inside
+        boolean bStatus = true;        // assuming is outside
         if (o instanceof Item) {
-            Rectangle rThis = new Rectangle(getX(), getY(), getWidth(), getHeight());
+            Rectangle rThis = new Rectangle(getX()+20, getY(), getWidth()+15, getHeight()+15);
             Item i = (Item) o;
             Rectangle rOther = new Rectangle(i.getX(), i.getY(), i.getWidth(), i.getHeight());
 
