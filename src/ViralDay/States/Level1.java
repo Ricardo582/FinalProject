@@ -70,7 +70,7 @@ public class Level1 extends GameState {
             //player.setDown();
         }
         if (KeyManager.isPressed(KeyManager.SPACE)) {
-            gsm.setState(GameStateManager.LEVEL2);
+            gsm.setState(GameStateManager.LEVEL2INTRO);
         }
     }
     

@@ -13,7 +13,7 @@ import java.awt.Graphics;
  *
  * @author ricar
  */
-public class GameOverState extends GameState {
+public class Level1Intro extends GameState {
     private int alpha;
     private int ticks;
     private int scene = 0;
@@ -22,7 +22,7 @@ public class GameOverState extends GameState {
     private final int LENGTH = 100;
     private final int FADE_OUT = 100;
 
-    public GameOverState(GameStateManager gsm) {
+    public Level1Intro(GameStateManager gsm) {
         super(gsm);
     }
 
@@ -49,7 +49,7 @@ public class GameOverState extends GameState {
             scene++;
             ticks = 0;
             if (scene > 3) {
-                gsm.setState(GameStateManager.MENU);
+                gsm.setState(GameStateManager.LEVEL1);
             }
         }
     }
@@ -57,14 +57,15 @@ public class GameOverState extends GameState {
     public void render(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
-        g.drawImage(Assets.GO[scene], 0, 0, Game.getWidth(), Game.getHeight(), null);
+        g.drawImage(Assets.Lvl1[scene], 0, 0, Game.getWidth(), Game.getHeight(),null);
         g.setColor(new Color(0, 0, 0, alpha));
         g.fillRect(0, 0, Game.getWidth(), Game.getHeight());
     }
 
     public void handleInput() {
         if (KeyManager.isPressed(KeyManager.ENTER)) {
-            gsm.setState(GameStateManager.MENU);
+            System.out.println(GameStateManager.LEVEL1);
+            gsm.setState(GameStateManager.LEVEL1);
         }
     }
 
